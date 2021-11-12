@@ -1,0 +1,49 @@
+/*
+ * main.c
+ *
+ *  Created on: Nov 9, 2021
+ *      Author: tendayi
+ */
+
+/*
+ * Empty C++ Application
+ */
+
+#include "artyBotLib.h"
+#include "xparameters.h"
+#include "xgpio.h"
+
+#define LED_CHANNEL 1
+#define SW_CHANNEL 2
+
+XGpio gpio1;
+
+int main()
+{
+  // Initialize GPIO buttons and LEDs
+  XGpio_Initialize(&gpio1, XPAR_GPIO_1_DEVICE_ID);
+  XGpio_SetDataDirection(&gpio1, LED_CHANNEL, 0);
+  XGpio_SetDataDirection(&gpio1, SW_CHANNEL, 15);
+
+  // initialize ArtyBot peripherals
+  artyBotInit();
+  // xil_printf("Initialization complete...\r");
+
+  while (1)
+  {
+    // Example 1: Basic driving
+    if (XGpio_DiscreteRead(&gpio1, SW_CHANNEL) & 1)
+    {
+      for (int i = 0; i < 4; ++i)
+      {
+        driveForward(100);
+        turnRight(45);
+      }
+    }
+    // xil_printf("Examples finished.\r");
+  }
+
+  artyBotEnd();
+
+  return 0;
+}

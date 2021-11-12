@@ -1,0 +1,32 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port s_axi_aclk -pg 1 -y 0 -defaultsOSRD
+preplace port S_AXI -pg 1 -y 80 -defaultsOSRD
+preplace port s_axi_aresetn -pg 1 -y 20 -defaultsOSRD
+preplace portBus gpio2_io_i -pg 1 -y 330 -defaultsOSRD
+preplace portBus gpio_io_t -pg 1 -y 510 -defaultsOSRD
+preplace portBus gpio_io_i -pg 1 -y 410 -defaultsOSRD
+preplace portBus gpio_io_o -pg 1 -y 430 -defaultsOSRD
+preplace inst xlconstant_gpio_o -pg 1 -lvl 2 -y 430 -defaultsOSRD
+preplace inst xlslice_pwm_1 -pg 1 -lvl 1 -y 410 -defaultsOSRD
+preplace inst xlconstant_gpio_tri -pg 1 -lvl 2 -y 510 -defaultsOSRD
+preplace inst PWM_Analyzer_0 -pg 1 -lvl 2 -y 180 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 1 -y 160 -defaultsOSRD
+preplace inst PWM_Analyzer_1 -pg 1 -lvl 2 -y 320 -defaultsOSRD
+preplace inst xlslice_pwm_0 -pg 1 -lvl 1 -y 330 -defaultsOSRD
+preplace netloc S_AXI_1 1 0 1 NJ
+preplace netloc xlslice_pwm_1_Dout 1 1 1 350J
+preplace netloc ACLK_1 1 0 2 30 0 340
+preplace netloc Din_1 1 0 1 NJ
+preplace netloc ARESETN_1 1 0 2 20 20 310
+preplace netloc Din_2 1 0 1 NJ
+preplace netloc xlconstant_0_dout 1 2 1 NJ
+preplace netloc xlslice_pwm_0_Dout 1 1 1 330J
+preplace netloc axi_interconnect_0_M00_AXI 1 1 1 N
+preplace netloc axi_interconnect_0_M01_AXI 1 1 1 320
+preplace netloc xlconstant_gpio_o_dout 1 2 1 NJ
+levelinfo -pg 1 0 170 450 570 -top -20 -bot 560
+",
+}
+0

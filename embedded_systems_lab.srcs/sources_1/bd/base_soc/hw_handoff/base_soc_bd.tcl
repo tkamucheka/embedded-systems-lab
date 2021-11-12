@@ -1,0 +1,833 @@
+
+################################################################
+# This is a generated script based on design: base_soc
+#
+# Though there are limitations about the generated script,
+# the main purpose of this utility is to make learning
+# IP Integrator Tcl commands easier.
+################################################################
+
+namespace eval _tcl {
+proc get_script_folder {} {
+   set script_path [file normalize [info script]]
+   set script_folder [file dirname $script_path]
+   return $script_folder
+}
+}
+variable script_folder
+set script_folder [_tcl::get_script_folder]
+
+################################################################
+# Check if script is running in correct Vivado version.
+################################################################
+set scripts_vivado_version 2016.4
+set current_vivado_version [version -short]
+
+if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
+   puts ""
+   catch {common::send_msg_id "BD_TCL-109" "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+
+   return 1
+}
+
+################################################################
+# START
+################################################################
+
+# To test this script, run the following commands from Vivado Tcl console:
+# source base_soc_script.tcl
+
+# If there is no project opened, this script will create a
+# project, but make sure you do not have an existing project
+# <./myproj/project_1.xpr> in the current working folder.
+
+set list_projs [get_projects -quiet]
+if { $list_projs eq "" } {
+   create_project project_1 myproj -part xc7a35ticsg324-1L
+   set_property BOARD_PART digilentinc.com:arty-a7-35:part0:1.0 [current_project]
+}
+
+
+# CHANGE DESIGN NAME HERE
+set design_name base_soc
+
+# If you do not already have an existing IP Integrator design open,
+# you can create a design using the following command:
+#    create_bd_design $design_name
+
+# Creating design if needed
+set errMsg ""
+set nRet 0
+
+set cur_design [current_bd_design -quiet]
+set list_cells [get_bd_cells -quiet]
+
+if { ${design_name} eq "" } {
+   # USE CASES:
+   #    1) Design_name not set
+
+   set errMsg "Please set the variable <design_name> to a non-empty value."
+   set nRet 1
+
+} elseif { ${cur_design} ne "" && ${list_cells} eq "" } {
+   # USE CASES:
+   #    2): Current design opened AND is empty AND names same.
+   #    3): Current design opened AND is empty AND names diff; design_name NOT in project.
+   #    4): Current design opened AND is empty AND names diff; design_name exists in project.
+
+   if { $cur_design ne $design_name } {
+      common::send_msg_id "BD_TCL-001" "INFO" "Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
+      set design_name [get_property NAME $cur_design]
+   }
+   common::send_msg_id "BD_TCL-002" "INFO" "Constructing design in IPI design <$cur_design>..."
+
+} elseif { ${cur_design} ne "" && $list_cells ne "" && $cur_design eq $design_name } {
+   # USE CASES:
+   #    5) Current design opened AND has components AND same names.
+
+   set errMsg "Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 1
+} elseif { [get_files -quiet ${design_name}.bd] ne "" } {
+   # USE CASES: 
+   #    6) Current opened design, has components, but diff names, design_name exists in project.
+   #    7) No opened design, design_name exists in project.
+
+   set errMsg "Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 2
+
+} else {
+   # USE CASES:
+   #    8) No opened design, design_name not in project.
+   #    9) Current opened design, has components, but diff names, design_name not in project.
+
+   common::send_msg_id "BD_TCL-003" "INFO" "Currently there is no design <$design_name> in project, so creating one..."
+
+   create_bd_design $design_name
+
+   common::send_msg_id "BD_TCL-004" "INFO" "Making design <$design_name> as current_bd_design."
+   current_bd_design $design_name
+
+}
+
+common::send_msg_id "BD_TCL-005" "INFO" "Currently the variable <design_name> is equal to \"$design_name\"."
+
+if { $nRet != 0 } {
+   catch {common::send_msg_id "BD_TCL-114" "ERROR" $errMsg}
+   return $nRet
+}
+
+
+##################################################################
+# MIG PRJ FILE TCL PROCs
+##################################################################
+
+proc write_mig_file_base_soc_mig_7series_0_0 { str_mig_prj_filepath } {
+
+   set mig_prj_file [open $str_mig_prj_filepath  w+]
+
+   puts $mig_prj_file {<?xml version='1.0' encoding='UTF-8'?>}
+   puts $mig_prj_file {<!-- IMPORTANT: This is an internal file that has been generated by the MIG software. Any direct editing or changes made to this file may result in unpredictable behavior or data corruption. It is strongly advised that users do not edit the contents of this file. Re-run the MIG GUI with the required settings if any of the options provided below need to be altered. -->}
+   puts $mig_prj_file {<Project NoOfControllers="1" >}
+   puts $mig_prj_file {    <ModuleName>design_1_mig_7series_0_0</ModuleName>}
+   puts $mig_prj_file {    <dci_inouts_inputs>1</dci_inouts_inputs>}
+   puts $mig_prj_file {    <dci_inputs>1</dci_inputs>}
+   puts $mig_prj_file {    <Debug_En>OFF</Debug_En>}
+   puts $mig_prj_file {    <DataDepth_En>1024</DataDepth_En>}
+   puts $mig_prj_file {    <LowPower_En>ON</LowPower_En>}
+   puts $mig_prj_file {    <XADC_En>Enabled</XADC_En>}
+   puts $mig_prj_file {    <TargetFPGA>xc7a35ti-csg324/-1L</TargetFPGA>}
+   puts $mig_prj_file {    <Version>2.3</Version>}
+   puts $mig_prj_file {    <SystemClock>No Buffer</SystemClock>}
+   puts $mig_prj_file {    <ReferenceClock>No Buffer</ReferenceClock>}
+   puts $mig_prj_file {    <SysResetPolarity>ACTIVE LOW</SysResetPolarity>}
+   puts $mig_prj_file {    <BankSelectionFlag>FALSE</BankSelectionFlag>}
+   puts $mig_prj_file {    <InternalVref>1</InternalVref>}
+   puts $mig_prj_file {    <dci_hr_inouts_inputs>50 Ohms</dci_hr_inouts_inputs>}
+   puts $mig_prj_file {    <dci_cascade>0</dci_cascade>}
+   puts $mig_prj_file {    <Controller number="0" >}
+   puts $mig_prj_file {        <MemoryDevice>DDR3_SDRAM/Components/MT41K128M16XX-15E</MemoryDevice>}
+   puts $mig_prj_file {        <TimePeriod>3000</TimePeriod>}
+   puts $mig_prj_file {        <VccAuxIO>1.8V</VccAuxIO>}
+   puts $mig_prj_file {        <PHYRatio>4:1</PHYRatio>}
+   puts $mig_prj_file {        <InputClkFreq>166.666</InputClkFreq>}
+   puts $mig_prj_file {        <UIExtraClocks>0</UIExtraClocks>}
+   puts $mig_prj_file {        <MMCM_VCO>666</MMCM_VCO>}
+   puts $mig_prj_file {        <MMCMClkOut0> 1.000</MMCMClkOut0>}
+   puts $mig_prj_file {        <MMCMClkOut1>1</MMCMClkOut1>}
+   puts $mig_prj_file {        <MMCMClkOut2>1</MMCMClkOut2>}
+   puts $mig_prj_file {        <MMCMClkOut3>1</MMCMClkOut3>}
+   puts $mig_prj_file {        <MMCMClkOut4>1</MMCMClkOut4>}
+   puts $mig_prj_file {        <DataWidth>16</DataWidth>}
+   puts $mig_prj_file {        <DeepMemory>1</DeepMemory>}
+   puts $mig_prj_file {        <DataMask>1</DataMask>}
+   puts $mig_prj_file {        <ECC>Disabled</ECC>}
+   puts $mig_prj_file {        <Ordering>Normal</Ordering>}
+   puts $mig_prj_file {        <CustomPart>FALSE</CustomPart>}
+   puts $mig_prj_file {        <NewPartName></NewPartName>}
+   puts $mig_prj_file {        <RowAddress>14</RowAddress>}
+   puts $mig_prj_file {        <ColAddress>10</ColAddress>}
+   puts $mig_prj_file {        <BankAddress>3</BankAddress>}
+   puts $mig_prj_file {        <MemoryVoltage>1.35V</MemoryVoltage>}
+   puts $mig_prj_file {        <C0_MEM_SIZE>268435456</C0_MEM_SIZE>}
+   puts $mig_prj_file {        <UserMemoryAddressMap>BANK_ROW_COLUMN</UserMemoryAddressMap>}
+   puts $mig_prj_file {        <PinSelection>}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R2" SLEW="" name="ddr3_addr[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R6" SLEW="" name="ddr3_addr[10]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U6" SLEW="" name="ddr3_addr[11]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="T6" SLEW="" name="ddr3_addr[12]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="T8" SLEW="" name="ddr3_addr[13]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="M6" SLEW="" name="ddr3_addr[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="N4" SLEW="" name="ddr3_addr[2]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="T1" SLEW="" name="ddr3_addr[3]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="N6" SLEW="" name="ddr3_addr[4]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R7" SLEW="" name="ddr3_addr[5]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="V6" SLEW="" name="ddr3_addr[6]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U7" SLEW="" name="ddr3_addr[7]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R8" SLEW="" name="ddr3_addr[8]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="V7" SLEW="" name="ddr3_addr[9]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R1" SLEW="" name="ddr3_ba[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="P4" SLEW="" name="ddr3_ba[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="P2" SLEW="" name="ddr3_ba[2]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="M4" SLEW="" name="ddr3_cas_n" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="V9" SLEW="" name="ddr3_ck_n[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="U9" SLEW="" name="ddr3_ck_p[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="N5" SLEW="" name="ddr3_cke[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U8" SLEW="" name="ddr3_cs_n[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="L1" SLEW="" name="ddr3_dm[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U1" SLEW="" name="ddr3_dm[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="K5" SLEW="" name="ddr3_dq[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U4" SLEW="" name="ddr3_dq[10]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="V5" SLEW="" name="ddr3_dq[11]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="V1" SLEW="" name="ddr3_dq[12]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="T3" SLEW="" name="ddr3_dq[13]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="U3" SLEW="" name="ddr3_dq[14]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R3" SLEW="" name="ddr3_dq[15]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="L3" SLEW="" name="ddr3_dq[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="K3" SLEW="" name="ddr3_dq[2]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="L6" SLEW="" name="ddr3_dq[3]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="M3" SLEW="" name="ddr3_dq[4]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="M1" SLEW="" name="ddr3_dq[5]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="L4" SLEW="" name="ddr3_dq[6]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="M2" SLEW="" name="ddr3_dq[7]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="V4" SLEW="" name="ddr3_dq[8]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="T5" SLEW="" name="ddr3_dq[9]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="N1" SLEW="" name="ddr3_dqs_n[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="V2" SLEW="" name="ddr3_dqs_n[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="N2" SLEW="" name="ddr3_dqs_p[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="DIFF_SSTL135" PADName="U2" SLEW="" name="ddr3_dqs_p[1]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="R5" SLEW="" name="ddr3_odt[0]" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="P3" SLEW="" name="ddr3_ras_n" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="K6" SLEW="" name="ddr3_reset_n" IN_TERM="" />}
+   puts $mig_prj_file {            <Pin VCCAUX_IO="" IOSTANDARD="SSTL135" PADName="P5" SLEW="" name="ddr3_we_n" IN_TERM="" />}
+   puts $mig_prj_file {        </PinSelection>}
+   puts $mig_prj_file {        <System_Control>}
+   puts $mig_prj_file {            <Pin PADName="No connect" Bank="Select Bank" name="sys_rst" />}
+   puts $mig_prj_file {            <Pin PADName="No connect" Bank="Select Bank" name="init_calib_complete" />}
+   puts $mig_prj_file {            <Pin PADName="No connect" Bank="Select Bank" name="tg_compare_error" />}
+   puts $mig_prj_file {        </System_Control>}
+   puts $mig_prj_file {        <TimingParameters>}
+   puts $mig_prj_file {            <Parameters twtr="7.5" trrd="7.5" trefi="7.8" tfaw="45" trtp="7.5" tcke="5.625" trfc="160" trp="13.5" tras="36" trcd="13.5" />}
+   puts $mig_prj_file {        </TimingParameters>}
+   puts $mig_prj_file {        <mrBurstLength name="Burst Length" >8 - Fixed</mrBurstLength>}
+   puts $mig_prj_file {        <mrBurstType name="Read Burst Type and Length" >Sequential</mrBurstType>}
+   puts $mig_prj_file {        <mrCasLatency name="CAS Latency" >5</mrCasLatency>}
+   puts $mig_prj_file {        <mrMode name="Mode" >Normal</mrMode>}
+   puts $mig_prj_file {        <mrDllReset name="DLL Reset" >No</mrDllReset>}
+   puts $mig_prj_file {        <mrPdMode name="DLL control for precharge PD" >Slow Exit</mrPdMode>}
+   puts $mig_prj_file {        <emrDllEnable name="DLL Enable" >Enable</emrDllEnable>}
+   puts $mig_prj_file {        <emrOutputDriveStrength name="Output Driver Impedance Control" >RZQ/6</emrOutputDriveStrength>}
+   puts $mig_prj_file {        <emrMirrorSelection name="Address Mirroring" >Disable</emrMirrorSelection>}
+   puts $mig_prj_file {        <emrCSSelection name="Controller Chip Select Pin" >Enable</emrCSSelection>}
+   puts $mig_prj_file {        <emrRTT name="RTT (nominal) - On Die Termination (ODT)" >RZQ/6</emrRTT>}
+   puts $mig_prj_file {        <emrPosted name="Additive Latency (AL)" >0</emrPosted>}
+   puts $mig_prj_file {        <emrOCD name="Write Leveling Enable" >Disabled</emrOCD>}
+   puts $mig_prj_file {        <emrDQS name="TDQS enable" >Enabled</emrDQS>}
+   puts $mig_prj_file {        <emrRDQS name="Qoff" >Output Buffer Enabled</emrRDQS>}
+   puts $mig_prj_file {        <mr2PartialArraySelfRefresh name="Partial-Array Self Refresh" >Full Array</mr2PartialArraySelfRefresh>}
+   puts $mig_prj_file {        <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>}
+   puts $mig_prj_file {        <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>}
+   puts $mig_prj_file {        <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>}
+   puts $mig_prj_file {        <mr2RTTWR name="RTT_WR - Dynamic On Die Termination (ODT)" >Dynamic ODT off</mr2RTTWR>}
+   puts $mig_prj_file {        <PortInterface>AXI</PortInterface>}
+   puts $mig_prj_file {        <AXIParameters>}
+   puts $mig_prj_file {            <C0_C_RD_WR_ARB_ALGORITHM>RD_PRI_REG</C0_C_RD_WR_ARB_ALGORITHM>}
+   puts $mig_prj_file {            <C0_S_AXI_ADDR_WIDTH>28</C0_S_AXI_ADDR_WIDTH>}
+   puts $mig_prj_file {            <C0_S_AXI_DATA_WIDTH>128</C0_S_AXI_DATA_WIDTH>}
+   puts $mig_prj_file {            <C0_S_AXI_ID_WIDTH>1</C0_S_AXI_ID_WIDTH>}
+   puts $mig_prj_file {            <C0_S_AXI_SUPPORTS_NARROW_BURST>0</C0_S_AXI_SUPPORTS_NARROW_BURST>}
+   puts $mig_prj_file {        </AXIParameters>}
+   puts $mig_prj_file {    </Controller>}
+   puts $mig_prj_file {</Project>}
+
+   close $mig_prj_file
+}
+# End of write_mig_file_base_soc_mig_7series_0_0()
+
+
+
+##################################################################
+# DESIGN PROCs
+##################################################################
+
+
+# Hierarchical cell: microblaze_0_local_memory
+proc create_hier_cell_microblaze_0_local_memory { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_microblaze_0_local_memory() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode MirroredMaster -vlnv xilinx.com:interface:lmb_rtl:1.0 DLMB
+  create_bd_intf_pin -mode MirroredMaster -vlnv xilinx.com:interface:lmb_rtl:1.0 ILMB
+
+  # Create pins
+  create_bd_pin -dir I -type clk LMB_Clk
+  create_bd_pin -dir I -type rst SYS_Rst
+
+  # Create instance: dlmb_bram_if_cntlr, and set properties
+  set dlmb_bram_if_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 dlmb_bram_if_cntlr ]
+  set_property -dict [ list \
+CONFIG.C_ECC {0} \
+ ] $dlmb_bram_if_cntlr
+
+  # Create instance: dlmb_v10, and set properties
+  set dlmb_v10 [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10:3.0 dlmb_v10 ]
+
+  # Create instance: ilmb_bram_if_cntlr, and set properties
+  set ilmb_bram_if_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 ilmb_bram_if_cntlr ]
+  set_property -dict [ list \
+CONFIG.C_ECC {0} \
+ ] $ilmb_bram_if_cntlr
+
+  # Create instance: ilmb_v10, and set properties
+  set ilmb_v10 [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10:3.0 ilmb_v10 ]
+
+  # Create instance: lmb_bram, and set properties
+  set lmb_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.3 lmb_bram ]
+  set_property -dict [ list \
+CONFIG.Memory_Type {True_Dual_Port_RAM} \
+CONFIG.use_bram_block {BRAM_Controller} \
+ ] $lmb_bram
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net microblaze_0_dlmb [get_bd_intf_pins DLMB] [get_bd_intf_pins dlmb_v10/LMB_M]
+  connect_bd_intf_net -intf_net microblaze_0_dlmb_bus [get_bd_intf_pins dlmb_bram_if_cntlr/SLMB] [get_bd_intf_pins dlmb_v10/LMB_Sl_0]
+  connect_bd_intf_net -intf_net microblaze_0_dlmb_cntlr [get_bd_intf_pins dlmb_bram_if_cntlr/BRAM_PORT] [get_bd_intf_pins lmb_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net microblaze_0_ilmb [get_bd_intf_pins ILMB] [get_bd_intf_pins ilmb_v10/LMB_M]
+  connect_bd_intf_net -intf_net microblaze_0_ilmb_bus [get_bd_intf_pins ilmb_bram_if_cntlr/SLMB] [get_bd_intf_pins ilmb_v10/LMB_Sl_0]
+  connect_bd_intf_net -intf_net microblaze_0_ilmb_cntlr [get_bd_intf_pins ilmb_bram_if_cntlr/BRAM_PORT] [get_bd_intf_pins lmb_bram/BRAM_PORTB]
+
+  # Create port connections
+  connect_bd_net -net SYS_Rst_1 [get_bd_pins SYS_Rst] [get_bd_pins dlmb_bram_if_cntlr/LMB_Rst] [get_bd_pins dlmb_v10/SYS_Rst] [get_bd_pins ilmb_bram_if_cntlr/LMB_Rst] [get_bd_pins ilmb_v10/SYS_Rst]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins LMB_Clk] [get_bd_pins dlmb_bram_if_cntlr/LMB_Clk] [get_bd_pins dlmb_v10/LMB_Clk] [get_bd_pins ilmb_bram_if_cntlr/LMB_Clk] [get_bd_pins ilmb_v10/LMB_Clk]
+
+  # Perform GUI Layout
+  regenerate_bd_layout -hierarchy [get_bd_cells /microblaze_0_local_memory] -layout_string {
+   guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port LMB_Clk -pg 1 -y 60 -defaultsOSRD
+preplace port ILMB -pg 1 -y 190 -defaultsOSRD
+preplace port DLMB -pg 1 -y 40 -defaultsOSRD
+preplace port SYS_Rst -pg 1 -y 80 -defaultsOSRD
+preplace inst ilmb_bram_if_cntlr -pg 1 -lvl 2 -y 200 -defaultsOSRD
+preplace inst dlmb_bram_if_cntlr -pg 1 -lvl 2 -y 80 -defaultsOSRD
+preplace inst lmb_bram -pg 1 -lvl 3 -y 90 -defaultsOSRD
+preplace inst ilmb_v10 -pg 1 -lvl 1 -y 210 -defaultsOSRD
+preplace inst dlmb_v10 -pg 1 -lvl 1 -y 60 -defaultsOSRD
+preplace netloc microblaze_0_dlmb 1 0 1 NJ
+preplace netloc SYS_Rst_1 1 0 2 20 130 240
+preplace netloc microblaze_0_ilmb_bus 1 1 1 250
+preplace netloc microblaze_0_Clk 1 0 2 30 140 230
+preplace netloc microblaze_0_dlmb_cntlr 1 2 1 N
+preplace netloc microblaze_0_ilmb 1 0 1 NJ
+preplace netloc microblaze_0_ilmb_cntlr 1 2 1 470
+preplace netloc microblaze_0_dlmb_bus 1 1 1 N
+levelinfo -pg 1 0 130 360 580 690 -top -10 -bot 280
+",
+}
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+
+# Procedure to create entire design; Provide argument to make
+# procedure reusable. If parentCell is "", will use root.
+proc create_root_design { parentCell } {
+
+  variable script_folder
+
+  if { $parentCell eq "" } {
+     set parentCell [get_bd_cells /]
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+
+  # Create interface ports
+  set ddr3_sdram [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 ddr3_sdram ]
+  set dip_switches_4bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 dip_switches_4bits ]
+  set eth_mdio_mdc [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:mdio_rtl:1.0 eth_mdio_mdc ]
+  set eth_mii [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:mii_rtl:1.0 eth_mii ]
+  set ja [ create_bd_intf_port -mode Master -vlnv digilentinc.com:interface:pmod_rtl:1.0 ja ]
+  set jb [ create_bd_intf_port -mode Master -vlnv digilentinc.com:interface:pmod_rtl:1.0 jb ]
+  set jd [ create_bd_intf_port -mode Master -vlnv digilentinc.com:interface:pmod_rtl:1.0 jd ]
+  set led_4bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 led_4bits ]
+  set push_buttons_4bits [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 push_buttons_4bits ]
+  set qspi_flash [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:spi_rtl:1.0 qspi_flash ]
+  set rgb_led [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 rgb_led ]
+  set usb_uart [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:uart_rtl:1.0 usb_uart ]
+
+  # Create ports
+  set reset [ create_bd_port -dir I -type rst reset ]
+  set_property -dict [ list \
+CONFIG.POLARITY {ACTIVE_LOW} \
+ ] $reset
+  set sys_clock [ create_bd_port -dir I -type clk sys_clock ]
+  set_property -dict [ list \
+CONFIG.FREQ_HZ {100000000} \
+CONFIG.PHASE {0.000} \
+ ] $sys_clock
+
+  # Create instance: Pmod_DHB1_0, and set properties
+  set Pmod_DHB1_0 [ create_bd_cell -type ip -vlnv user.org:user:Pmod_DHB1:1.0 Pmod_DHB1_0 ]
+
+  # Create instance: Pmod_Dual_MAXSONAR_0, and set properties
+  set Pmod_Dual_MAXSONAR_0 [ create_bd_cell -type ip -vlnv user.org:user:Pmod_Dual_MAXSONAR:1.0 Pmod_Dual_MAXSONAR_0 ]
+
+  # Create instance: axi_ethernetlite_0, and set properties
+  set axi_ethernetlite_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_ethernetlite:3.0 axi_ethernetlite_0 ]
+  set_property -dict [ list \
+CONFIG.MDIO_BOARD_INTERFACE {eth_mdio_mdc} \
+CONFIG.MII_BOARD_INTERFACE {eth_mii} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $axi_ethernetlite_0
+
+  # Create instance: axi_gpio_0, and set properties
+  set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
+  set_property -dict [ list \
+CONFIG.C_INTERRUPT_PRESENT {1} \
+CONFIG.GPIO2_BOARD_INTERFACE {push_buttons_4bits} \
+CONFIG.GPIO_BOARD_INTERFACE {led_4bits} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $axi_gpio_0
+
+  # Create instance: axi_gpio_1, and set properties
+  set axi_gpio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_1 ]
+  set_property -dict [ list \
+CONFIG.GPIO2_BOARD_INTERFACE {dip_switches_4bits} \
+CONFIG.GPIO_BOARD_INTERFACE {rgb_led} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $axi_gpio_1
+
+  # Create instance: axi_gpio_Pmod_LS1, and set properties
+  set axi_gpio_Pmod_LS1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_Pmod_LS1 ]
+  set_property -dict [ list \
+CONFIG.C_INTERRUPT_PRESENT {1} \
+CONFIG.C_IS_DUAL {1} \
+ ] $axi_gpio_Pmod_LS1
+
+  # Create instance: axi_quad_spi_0, and set properties
+  set axi_quad_spi_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_quad_spi:3.2 axi_quad_spi_0 ]
+  set_property -dict [ list \
+CONFIG.C_SPI_MODE {2} \
+CONFIG.QSPI_BOARD_INTERFACE {qspi_flash} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $axi_quad_spi_0
+
+  # Need to retain value_src of defaults
+  set_property -dict [ list \
+CONFIG.C_SPI_MODE.VALUE_SRC {DEFAULT} \
+ ] $axi_quad_spi_0
+
+  # Create instance: axi_timer_0, and set properties
+  set axi_timer_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timer:2.0 axi_timer_0 ]
+
+  # Create instance: axi_uartlite_0, and set properties
+  set axi_uartlite_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uartlite:2.0 axi_uartlite_0 ]
+  set_property -dict [ list \
+CONFIG.UARTLITE_BOARD_INTERFACE {usb_uart} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $axi_uartlite_0
+
+  # Create instance: clk_wiz_1, and set properties
+  set clk_wiz_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.3 clk_wiz_1 ]
+  set_property -dict [ list \
+CONFIG.CLKOUT1_JITTER {114.829} \
+CONFIG.CLKOUT1_PHASE_ERROR {98.575} \
+CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {200.000} \
+CONFIG.CLKOUT2_JITTER {118.758} \
+CONFIG.CLKOUT2_PHASE_ERROR {98.575} \
+CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {166.667} \
+CONFIG.CLKOUT2_USED {true} \
+CONFIG.CLK_IN1_BOARD_INTERFACE {sys_clock} \
+CONFIG.MMCM_CLKFBOUT_MULT_F {10.000} \
+CONFIG.MMCM_CLKIN1_PERIOD {10.0} \
+CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
+CONFIG.MMCM_CLKOUT0_DIVIDE_F {5.000} \
+CONFIG.MMCM_CLKOUT1_DIVIDE {6} \
+CONFIG.MMCM_COMPENSATION {ZHOLD} \
+CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+CONFIG.NUM_OUT_CLKS {2} \
+CONFIG.PRIM_SOURCE {Single_ended_clock_capable_pin} \
+CONFIG.RESET_BOARD_INTERFACE {reset} \
+CONFIG.RESET_PORT {resetn} \
+CONFIG.RESET_TYPE {ACTIVE_LOW} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $clk_wiz_1
+
+  # Need to retain value_src of defaults
+  set_property -dict [ list \
+CONFIG.CLKOUT1_PHASE_ERROR.VALUE_SRC {DEFAULT} \
+CONFIG.MMCM_CLKFBOUT_MULT_F.VALUE_SRC {DEFAULT} \
+CONFIG.MMCM_CLKIN1_PERIOD.VALUE_SRC {DEFAULT} \
+CONFIG.MMCM_CLKIN2_PERIOD.VALUE_SRC {DEFAULT} \
+CONFIG.MMCM_COMPENSATION.VALUE_SRC {DEFAULT} \
+ ] $clk_wiz_1
+
+  # Create instance: mdm_1, and set properties
+  set mdm_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mdm:3.2 mdm_1 ]
+
+  # Create instance: microblaze_0, and set properties
+  set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 microblaze_0 ]
+  set_property -dict [ list \
+CONFIG.C_ADDR_SIZE {32} \
+CONFIG.C_CACHE_BYTE_SIZE {16384} \
+CONFIG.C_DCACHE_BYTE_SIZE {16384} \
+CONFIG.C_DEBUG_ENABLED {1} \
+CONFIG.C_D_AXI {1} \
+CONFIG.C_D_LMB {1} \
+CONFIG.C_I_LMB {1} \
+CONFIG.C_USE_DCACHE {0} \
+CONFIG.C_USE_ICACHE {0} \
+CONFIG.C_USE_MMU {0} \
+CONFIG.C_USE_MSR_INSTR {0} \
+ ] $microblaze_0
+
+  # Create instance: microblaze_0_axi_intc, and set properties
+  set microblaze_0_axi_intc [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 microblaze_0_axi_intc ]
+  set_property -dict [ list \
+CONFIG.C_HAS_FAST {1} \
+ ] $microblaze_0_axi_intc
+
+  # Create instance: microblaze_0_axi_io, and set properties
+  set microblaze_0_axi_io [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_0_axi_io ]
+  set_property -dict [ list \
+CONFIG.NUM_MI {7} \
+ ] $microblaze_0_axi_io
+
+  # Create instance: microblaze_0_axi_periph, and set properties
+  set microblaze_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_0_axi_periph ]
+  set_property -dict [ list \
+CONFIG.NUM_MI {3} \
+CONFIG.NUM_SI {1} \
+ ] $microblaze_0_axi_periph
+
+  # Create instance: microblaze_0_local_memory
+  create_hier_cell_microblaze_0_local_memory [current_bd_instance .] microblaze_0_local_memory
+
+  # Create instance: microblaze_axi_0_master, and set properties
+  set microblaze_axi_0_master [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_axi_0_master ]
+  set_property -dict [ list \
+CONFIG.NUM_MI {3} \
+ ] $microblaze_axi_0_master
+
+  # Create instance: microblaze_axi_0_mem, and set properties
+  set microblaze_axi_0_mem [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_axi_0_mem ]
+  set_property -dict [ list \
+CONFIG.NUM_MI {1} \
+CONFIG.NUM_SI {1} \
+ ] $microblaze_axi_0_mem
+
+  # Create instance: mig_7series_0, and set properties
+  set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:4.0 mig_7series_0 ]
+
+  # Generate the PRJ File for MIG
+  set str_mig_folder [get_property IP_DIR [ get_ips [ get_property CONFIG.Component_Name $mig_7series_0 ] ] ]
+  set str_mig_file_name board.prj
+  set str_mig_file_path ${str_mig_folder}/${str_mig_file_name}
+
+  write_mig_file_base_soc_mig_7series_0_0 $str_mig_file_path
+
+  set_property -dict [ list \
+CONFIG.BOARD_MIG_PARAM {ddr3_sdram} \
+CONFIG.RESET_BOARD_INTERFACE {reset} \
+CONFIG.XML_INPUT_FILE {board.prj} \
+ ] $mig_7series_0
+
+  # Need to retain value_src of defaults
+  set_property -dict [ list \
+CONFIG.XML_INPUT_FILE.VALUE_SRC {DEFAULT} \
+ ] $mig_7series_0
+
+  # Create instance: pmod_bridge_0, and set properties
+  set pmod_bridge_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:pmod_bridge:1.0 pmod_bridge_0 ]
+  set_property -dict [ list \
+CONFIG.Bottom_Row_Interface {GPIO} \
+CONFIG.PMOD {jb} \
+CONFIG.Top_Row_Interface {GPIO} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $pmod_bridge_0
+
+  # Create instance: pmod_bridge_1, and set properties
+  set pmod_bridge_1 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:pmod_bridge:1.0 pmod_bridge_1 ]
+  set_property -dict [ list \
+CONFIG.Bottom_Row_Interface {GPIO} \
+CONFIG.PMOD {jd} \
+CONFIG.Top_Row_Interface {GPIO} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $pmod_bridge_1
+
+  # Create instance: pmod_bridge_2, and set properties
+  set pmod_bridge_2 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:pmod_bridge:1.0 pmod_bridge_2 ]
+  set_property -dict [ list \
+CONFIG.Bottom_Row_Interface {GPIO} \
+CONFIG.PMOD {ja} \
+CONFIG.Top_Row_Interface {GPIO} \
+CONFIG.USE_BOARD_FLOW {true} \
+ ] $pmod_bridge_2
+
+  # Create instance: rst_mig_7series_0_83M, and set properties
+  set rst_mig_7series_0_83M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_mig_7series_0_83M ]
+
+  # Create instance: xlconcat_0, and set properties
+  set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
+  set_property -dict [ list \
+CONFIG.NUM_PORTS {3} \
+ ] $xlconcat_0
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net Pmod_DHB1_0_GPIO [get_bd_intf_pins Pmod_DHB1_0/GPIO] [get_bd_intf_pins pmod_bridge_1/GPIO_Top_Row]
+  connect_bd_intf_net -intf_net Pmod_DHB1_0_GPIO2 [get_bd_intf_pins Pmod_DHB1_0/GPIO2] [get_bd_intf_pins pmod_bridge_1/GPIO_Bottom_Row]
+  connect_bd_intf_net -intf_net Pmod_Dual_MAXSONAR_0_GPIO [get_bd_intf_pins Pmod_Dual_MAXSONAR_0/GPIO] [get_bd_intf_pins pmod_bridge_0/GPIO_Top_Row]
+  connect_bd_intf_net -intf_net Pmod_Dual_MAXSONAR_0_GPIO2 [get_bd_intf_pins Pmod_Dual_MAXSONAR_0/GPIO2] [get_bd_intf_pins pmod_bridge_0/GPIO_Bottom_Row]
+  connect_bd_intf_net -intf_net S00_AXI_1 [get_bd_intf_pins microblaze_axi_0_master/M00_AXI] [get_bd_intf_pins microblaze_axi_0_mem/S00_AXI]
+  connect_bd_intf_net -intf_net S00_AXI_2 [get_bd_intf_pins microblaze_0_axi_periph/S00_AXI] [get_bd_intf_pins microblaze_axi_0_master/M01_AXI]
+  connect_bd_intf_net -intf_net S00_AXI_3 [get_bd_intf_pins microblaze_0/M_AXI_DP] [get_bd_intf_pins microblaze_axi_0_master/S00_AXI]
+  connect_bd_intf_net -intf_net S00_AXI_4 [get_bd_intf_pins microblaze_0_axi_io/S00_AXI] [get_bd_intf_pins microblaze_axi_0_master/M02_AXI]
+  connect_bd_intf_net -intf_net axi_ethernetlite_0_MDIO [get_bd_intf_ports eth_mdio_mdc] [get_bd_intf_pins axi_ethernetlite_0/MDIO]
+  connect_bd_intf_net -intf_net axi_ethernetlite_0_MII [get_bd_intf_ports eth_mii] [get_bd_intf_pins axi_ethernetlite_0/MII]
+  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports led_4bits] [get_bd_intf_pins axi_gpio_0/GPIO]
+  connect_bd_intf_net -intf_net axi_gpio_0_GPIO2 [get_bd_intf_ports push_buttons_4bits] [get_bd_intf_pins axi_gpio_0/GPIO2]
+  connect_bd_intf_net -intf_net axi_gpio_1_GPIO [get_bd_intf_ports rgb_led] [get_bd_intf_pins axi_gpio_1/GPIO]
+  connect_bd_intf_net -intf_net axi_gpio_1_GPIO2 [get_bd_intf_ports dip_switches_4bits] [get_bd_intf_pins axi_gpio_1/GPIO2]
+  connect_bd_intf_net -intf_net axi_gpio_Pmod_LS1_GPIO [get_bd_intf_pins axi_gpio_Pmod_LS1/GPIO] [get_bd_intf_pins pmod_bridge_2/GPIO_Top_Row]
+  connect_bd_intf_net -intf_net axi_gpio_Pmod_LS1_GPIO2 [get_bd_intf_pins axi_gpio_Pmod_LS1/GPIO2] [get_bd_intf_pins pmod_bridge_2/GPIO_Bottom_Row]
+  connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins microblaze_axi_0_mem/M00_AXI] [get_bd_intf_pins mig_7series_0/S_AXI]
+  connect_bd_intf_net -intf_net axi_quad_spi_0_SPI_0 [get_bd_intf_ports qspi_flash] [get_bd_intf_pins axi_quad_spi_0/SPI_0]
+  connect_bd_intf_net -intf_net axi_uartlite_0_UART [get_bd_intf_ports usb_uart] [get_bd_intf_pins axi_uartlite_0/UART]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M00_AXI [get_bd_intf_pins axi_ethernetlite_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M00_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M01_AXI [get_bd_intf_pins axi_uartlite_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M01_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M02_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M02_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M03_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M03_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M04_AXI [get_bd_intf_pins axi_gpio_Pmod_LS1/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M04_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M05_AXI [get_bd_intf_pins Pmod_Dual_MAXSONAR_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M05_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_io_M06_AXI [get_bd_intf_pins Pmod_DHB1_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M06_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M01_AXI [get_bd_intf_pins axi_quad_spi_0/AXI_LITE] [get_bd_intf_pins microblaze_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M02_AXI [get_bd_intf_pins axi_timer_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M02_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_debug [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_0/DEBUG]
+  connect_bd_intf_net -intf_net microblaze_0_dlmb_1 [get_bd_intf_pins microblaze_0/DLMB] [get_bd_intf_pins microblaze_0_local_memory/DLMB]
+  connect_bd_intf_net -intf_net microblaze_0_ilmb_1 [get_bd_intf_pins microblaze_0/ILMB] [get_bd_intf_pins microblaze_0_local_memory/ILMB]
+  connect_bd_intf_net -intf_net microblaze_0_intc_axi [get_bd_intf_pins microblaze_0_axi_intc/s_axi] [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
+  connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_ports ddr3_sdram] [get_bd_intf_pins mig_7series_0/DDR3]
+  connect_bd_intf_net -intf_net pmod_bridge_0_Pmod_out [get_bd_intf_ports jb] [get_bd_intf_pins pmod_bridge_0/Pmod_out]
+  connect_bd_intf_net -intf_net pmod_bridge_1_Pmod_out [get_bd_intf_ports jd] [get_bd_intf_pins pmod_bridge_1/Pmod_out]
+  connect_bd_intf_net -intf_net pmod_bridge_2_Pmod_out [get_bd_intf_ports ja] [get_bd_intf_pins pmod_bridge_2/Pmod_out]
+
+  # Create port connections
+  connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_pins axi_gpio_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
+  connect_bd_net -net axi_gpio_Pmod_LS1_ip2intc_irpt [get_bd_pins axi_gpio_Pmod_LS1/ip2intc_irpt] [get_bd_pins xlconcat_0/In2]
+  connect_bd_net -net axi_timer_0_interrupt [get_bd_pins axi_timer_0/interrupt] [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net clk_wiz_1_clk_out1 [get_bd_pins clk_wiz_1/clk_out1] [get_bd_pins mig_7series_0/clk_ref_i]
+  connect_bd_net -net clk_wiz_1_clk_out2 [get_bd_pins clk_wiz_1/clk_out2] [get_bd_pins mig_7series_0/sys_clk_i]
+  connect_bd_net -net mdm_1_debug_sys_rst [get_bd_pins mdm_1/Debug_SYS_Rst] [get_bd_pins rst_mig_7series_0_83M/mb_debug_sys_rst]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins Pmod_DHB1_0/s_axi_aclk] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aclk] [get_bd_pins axi_ethernetlite_0/s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aclk] [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins axi_quad_spi_0/s_axi_aclk] [get_bd_pins axi_timer_0/s_axi_aclk] [get_bd_pins axi_uartlite_0/s_axi_aclk] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_intc/processor_clk] [get_bd_pins microblaze_0_axi_intc/s_axi_aclk] [get_bd_pins microblaze_0_axi_io/ACLK] [get_bd_pins microblaze_0_axi_io/M00_ACLK] [get_bd_pins microblaze_0_axi_io/M01_ACLK] [get_bd_pins microblaze_0_axi_io/M02_ACLK] [get_bd_pins microblaze_0_axi_io/M03_ACLK] [get_bd_pins microblaze_0_axi_io/M04_ACLK] [get_bd_pins microblaze_0_axi_io/M05_ACLK] [get_bd_pins microblaze_0_axi_io/M06_ACLK] [get_bd_pins microblaze_0_axi_io/S00_ACLK] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/M01_ACLK] [get_bd_pins microblaze_0_axi_periph/M02_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins microblaze_axi_0_master/ACLK] [get_bd_pins microblaze_axi_0_master/M00_ACLK] [get_bd_pins microblaze_axi_0_master/M01_ACLK] [get_bd_pins microblaze_axi_0_master/M02_ACLK] [get_bd_pins microblaze_axi_0_master/S00_ACLK] [get_bd_pins microblaze_axi_0_mem/ACLK] [get_bd_pins microblaze_axi_0_mem/M00_ACLK] [get_bd_pins microblaze_axi_0_mem/S00_ACLK] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_83M/slowest_sync_clk]
+  connect_bd_net -net microblaze_0_intr [get_bd_pins microblaze_0_axi_intc/intr] [get_bd_pins xlconcat_0/dout]
+  connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_pins rst_mig_7series_0_83M/dcm_locked]
+  connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_pins rst_mig_7series_0_83M/ext_reset_in]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_1/resetn] [get_bd_pins mig_7series_0/sys_rst]
+  connect_bd_net -net rst_mig_7series_0_83M_bus_struct_reset [get_bd_pins microblaze_0_local_memory/SYS_Rst] [get_bd_pins rst_mig_7series_0_83M/bus_struct_reset]
+  connect_bd_net -net rst_mig_7series_0_83M_interconnect_aresetn [get_bd_pins microblaze_0_axi_io/ARESETN] [get_bd_pins microblaze_0_axi_periph/ARESETN] [get_bd_pins microblaze_axi_0_master/ARESETN] [get_bd_pins microblaze_axi_0_mem/ARESETN] [get_bd_pins rst_mig_7series_0_83M/interconnect_aresetn]
+  connect_bd_net -net rst_mig_7series_0_83M_mb_reset [get_bd_pins microblaze_0/Reset] [get_bd_pins microblaze_0_axi_intc/processor_rst] [get_bd_pins rst_mig_7series_0_83M/mb_reset]
+  connect_bd_net -net rst_mig_7series_0_83M_peripheral_aresetn [get_bd_pins Pmod_DHB1_0/s_axi_aresetn] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aresetn] [get_bd_pins axi_ethernetlite_0/s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aresetn] [get_bd_pins axi_quad_spi_0/s_axi_aresetn] [get_bd_pins axi_timer_0/s_axi_aresetn] [get_bd_pins axi_uartlite_0/s_axi_aresetn] [get_bd_pins microblaze_0_axi_intc/s_axi_aresetn] [get_bd_pins microblaze_0_axi_io/M00_ARESETN] [get_bd_pins microblaze_0_axi_io/M01_ARESETN] [get_bd_pins microblaze_0_axi_io/M02_ARESETN] [get_bd_pins microblaze_0_axi_io/M03_ARESETN] [get_bd_pins microblaze_0_axi_io/M04_ARESETN] [get_bd_pins microblaze_0_axi_io/M05_ARESETN] [get_bd_pins microblaze_0_axi_io/M06_ARESETN] [get_bd_pins microblaze_0_axi_io/S00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M01_ARESETN] [get_bd_pins microblaze_0_axi_periph/M02_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins microblaze_axi_0_master/M00_ARESETN] [get_bd_pins microblaze_axi_0_master/M01_ARESETN] [get_bd_pins microblaze_axi_0_master/M02_ARESETN] [get_bd_pins microblaze_axi_0_master/S00_ARESETN] [get_bd_pins microblaze_axi_0_mem/M00_ARESETN] [get_bd_pins microblaze_axi_0_mem/S00_ARESETN] [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_83M/peripheral_aresetn]
+  connect_bd_net -net sys_clock_1 [get_bd_ports sys_clock] [get_bd_pins clk_wiz_1/clk_in1]
+
+  # Create address segments
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs Pmod_DHB1_0/S_AXI/GPIO] SEG_Pmod_DHB1_0_GPIO
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A20000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs Pmod_DHB1_0/S_AXI/MOTOR_FB] SEG_Pmod_DHB1_0_MOTOR_FB
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A10000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs Pmod_DHB1_0/S_AXI/PWM] SEG_Pmod_DHB1_0_PWM
+  create_bd_addr_seg -range 0x00010000 -offset 0x45A00000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs Pmod_Dual_MAXSONAR_0/S_AXI/SONAR0] SEG_Pmod_Dual_MAXSONAR_0_SONAR0
+  create_bd_addr_seg -range 0x00010000 -offset 0x45A10000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs Pmod_Dual_MAXSONAR_0/S_AXI/SONAR1] SEG_Pmod_Dual_MAXSONAR_0_SONAR1
+  create_bd_addr_seg -range 0x00010000 -offset 0x40E00000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_ethernetlite_0/S_AXI/Reg] SEG_axi_ethernetlite_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x40010000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_gpio_1/S_AXI/Reg] SEG_axi_gpio_1_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x40020000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_gpio_Pmod_LS1/S_AXI/Reg] SEG_axi_gpio_Pmod_LS1_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A30000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_quad_spi_0/AXI_LITE/Reg] SEG_axi_quad_spi_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_timer_0/S_AXI/Reg] SEG_axi_timer_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x40600000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs axi_uartlite_0/S_AXI/Reg] SEG_axi_uartlite_0_Reg
+  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs microblaze_0_local_memory/dlmb_bram_if_cntlr/SLMB/Mem] SEG_dlmb_bram_if_cntlr_Mem
+  create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces microblaze_0/Instruction] [get_bd_addr_segs microblaze_0_local_memory/ilmb_bram_if_cntlr/SLMB/Mem] SEG_ilmb_bram_if_cntlr_Mem
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs microblaze_0_axi_intc/S_AXI/Reg] SEG_microblaze_0_axi_intc_Reg
+  create_bd_addr_seg -range 0x10000000 -offset 0x80000000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs mig_7series_0/memmap/memaddr] SEG_mig_7series_0_memaddr
+
+  # Perform GUI Layout
+  regenerate_bd_layout -layout_string {
+   guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port ddr3_sdram -pg 1 -y 1100 -defaultsOSRD
+preplace port ja -pg 1 -y 170 -defaultsOSRD
+preplace port eth_mii -pg 1 -y 260 -defaultsOSRD
+preplace port jb -pg 1 -y 70 -defaultsOSRD
+preplace port qspi_flash -pg 1 -y 880 -defaultsOSRD
+preplace port eth_mdio_mdc -pg 1 -y 280 -defaultsOSRD
+preplace port sys_clock -pg 1 -y 1200 -defaultsOSRD
+preplace port jd -pg 1 -y 530 -defaultsOSRD
+preplace port usb_uart -pg 1 -y 750 -defaultsOSRD
+preplace port push_buttons_4bits -pg 1 -y 640 -defaultsOSRD
+preplace port rgb_led -pg 1 -y 410 -defaultsOSRD
+preplace port led_4bits -pg 1 -y 620 -defaultsOSRD
+preplace port reset -pg 1 -y 1120 -defaultsOSRD
+preplace port dip_switches_4bits -pg 1 -y 430 -defaultsOSRD
+preplace inst microblaze_axi_0_mem -pg 1 -lvl 7 -y 980 -defaultsOSRD
+preplace inst rst_mig_7series_0_83M -pg 1 -lvl 1 -y 860 -defaultsOSRD
+preplace inst axi_gpio_Pmod_LS1 -pg 1 -lvl 7 -y 190 -defaultsOSRD
+preplace inst mig_7series_0 -pg 1 -lvl 8 -y 1140 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 660 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -y 420 -defaultsOSRD
+preplace inst pmod_bridge_0 -pg 1 -lvl 8 -y 70 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 3 -y 520 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 8 -y 640 -defaultsOSRD
+preplace inst Pmod_DHB1_0 -pg 1 -lvl 7 -y 480 -defaultsOSRD
+preplace inst pmod_bridge_1 -pg 1 -lvl 8 -y 530 -defaultsOSRD
+preplace inst microblaze_axi_0_master -pg 1 -lvl 5 -y 520 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 8 -y 420 -defaultsOSRD
+preplace inst Pmod_Dual_MAXSONAR_0 -pg 1 -lvl 7 -y 70 -defaultsOSRD
+preplace inst pmod_bridge_2 -pg 1 -lvl 8 -y 170 -defaultsOSRD
+preplace inst axi_ethernetlite_0 -pg 1 -lvl 8 -y 280 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 3 -y 920 -defaultsOSRD
+preplace inst microblaze_0_axi_intc -pg 1 -lvl 3 -y 730 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 4 -y 760 -defaultsOSRD
+preplace inst axi_uartlite_0 -pg 1 -lvl 8 -y 760 -defaultsOSRD
+preplace inst microblaze_0_axi_io -pg 1 -lvl 6 -y 620 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -y 780 -defaultsOSRD
+preplace inst clk_wiz_1 -pg 1 -lvl 7 -y 1190 -defaultsOSRD
+preplace inst axi_quad_spi_0 -pg 1 -lvl 8 -y 890 -defaultsOSRD
+preplace netloc Pmod_DHB1_0_GPIO 1 7 1 2610
+preplace netloc axi_quad_spi_0_SPI_0 1 8 1 NJ
+preplace netloc mig_7series_0_mmcm_locked 1 0 9 30 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 2520J 1250 2890
+preplace netloc microblaze_0_axi_io_M06_AXI 1 6 1 2210
+preplace netloc axi_ethernetlite_0_MDIO 1 8 1 NJ
+preplace netloc pmod_bridge_2_Pmod_out 1 8 1 NJ
+preplace netloc mig_7series_0_DDR3 1 8 1 NJ
+preplace netloc microblaze_0_intr 1 2 1 760
+preplace netloc microblaze_0_Clk 1 0 9 20 280 430 280 780 280 1040 280 1550 280 1900 280 2220 280 2550 1240 2900
+preplace netloc microblaze_0_interrupt 1 3 1 N
+preplace netloc microblaze_0_intc_axi 1 2 1 770
+preplace netloc axi_gpio_Pmod_LS1_ip2intc_irpt 1 1 7 440 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 2520
+preplace netloc rst_mig_7series_0_83M_peripheral_aresetn 1 1 7 410 300 790 300 NJ 300 1570 300 1870 300 2230 300 2590
+preplace netloc microblaze_0_ilmb_1 1 4 1 1520
+preplace netloc pmod_bridge_0_Pmod_out 1 8 1 NJ
+preplace netloc axi_gpio_Pmod_LS1_GPIO 1 7 1 2520
+preplace netloc microblaze_0_axi_io_M00_AXI 1 6 2 NJ 560 2530
+preplace netloc sys_clock_1 1 0 7 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ
+preplace netloc microblaze_0_axi_io_M02_AXI 1 6 2 NJ 600 2570
+preplace netloc axi_gpio_1_GPIO2 1 8 1 NJ
+preplace netloc rst_mig_7series_0_83M_mb_reset 1 1 3 NJ 820 770 830 1060J
+preplace netloc microblaze_0_axi_io_M03_AXI 1 6 2 NJ 620 2560
+preplace netloc S00_AXI_1 1 5 2 1860 920 NJ
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 6 740 840 NJ 840 1540J 860 NJ 860 NJ 860 NJ
+preplace netloc axi_gpio_0_GPIO2 1 8 1 NJ
+preplace netloc clk_wiz_1_clk_out1 1 7 1 2600
+preplace netloc S00_AXI_2 1 1 5 450 320 NJ 320 NJ 320 NJ 320 1850
+preplace netloc axi_interconnect_0_M00_AXI 1 7 1 2540
+preplace netloc pmod_bridge_1_Pmod_out 1 8 1 NJ
+preplace netloc axi_uartlite_0_UART 1 8 1 NJ
+preplace netloc axi_gpio_0_GPIO 1 8 1 NJ
+preplace netloc axi_gpio_0_ip2intc_irpt 1 1 8 460 1100 NJ 1100 NJ 1100 NJ 1100 NJ 1100 NJ 1100 2530J 1230 2910
+preplace netloc clk_wiz_1_clk_out2 1 7 1 2610
+preplace netloc mig_7series_0_ui_clk_sync_rst 1 0 9 30 770 400J 860 NJ 860 NJ 860 1520J 870 NJ 870 2240J 840 2520J 970 2890
+preplace netloc S00_AXI_3 1 4 1 1530
+preplace netloc microblaze_0_dlmb_1 1 4 1 1540
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 2 1 750
+preplace netloc axi_gpio_Pmod_LS1_GPIO2 1 7 1 2520
+preplace netloc microblaze_0_axi_io_M01_AXI 1 6 2 NJ 580 2580
+preplace netloc S00_AXI_4 1 5 1 1880
+preplace netloc microblaze_0_debug 1 3 1 1050
+preplace netloc Pmod_DHB1_0_GPIO2 1 7 1 2600
+preplace netloc Pmod_Dual_MAXSONAR_0_GPIO2 1 7 1 N
+preplace netloc axi_gpio_1_GPIO 1 8 1 NJ
+preplace netloc axi_ethernetlite_0_MII 1 8 1 NJ
+preplace netloc mdm_1_debug_sys_rst 1 0 4 20 980 NJ 980 NJ 980 1030
+preplace netloc rst_mig_7series_0_83M_interconnect_aresetn 1 1 6 420 350 NJ 350 NJ 350 1560 350 1890 350 2200J
+preplace netloc reset_1 1 0 8 NJ 1120 NJ 1120 NJ 1120 NJ 1120 NJ 1120 NJ 1120 2210 1120 NJ
+preplace netloc microblaze_0_axi_io_M05_AXI 1 6 1 2180
+preplace netloc Pmod_Dual_MAXSONAR_0_GPIO 1 7 1 N
+preplace netloc microblaze_0_axi_io_M04_AXI 1 6 1 2190
+preplace netloc rst_mig_7series_0_83M_bus_struct_reset 1 1 4 390J 850 NJ 850 NJ 850 1560
+preplace netloc axi_timer_0_interrupt 1 1 3 460 330 NJ 330 1030
+levelinfo -pg 1 0 220 600 910 1290 1710 2040 2380 2750 2930 -top 0 -bot 1260
+",
+}
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+
+  save_bd_design
+}
+# End of create_root_design()
+
+
+##################################################################
+# MAIN FLOW
+##################################################################
+
+create_root_design ""
+
+
