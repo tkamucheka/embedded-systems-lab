@@ -2,13 +2,13 @@
 <?scdStore version="2"?><scannerInfo id="org.eclipse.cdt.make.core.discoveredScannerInfo">
 <instance id="xilinx.gnu.mb.exe.debug.978879539;xilinx.gnu.mb.exe.debug.978879539.">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/microblaze-xilinx-elf"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/backward"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include-fixed"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../microblaze-xilinx-elf/sysroot/usr/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/microblaze-xilinx-elf"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/backward"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include-fixed"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../microblaze-xilinx-elf/sysroot/usr/include"/>
 <definedSymbol symbol="__STDC__=1"/>
 <definedSymbol symbol="__cplusplus=199711L"/>
 <definedSymbol symbol="__STDC_HOSTED__=1"/>
@@ -234,13 +234,13 @@
 </instance>
 <instance id="xilinx.gnu.mb.exe.release.1361902050;xilinx.gnu.mb.exe.release.1361902050.">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/microblaze-xilinx-elf"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/backward"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include-fixed"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include"/>
-<includePath path="/mnt/Storm/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../microblaze-xilinx-elf/sysroot/usr/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/microblaze-xilinx-elf"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include/c++/5.2.0/backward"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/include-fixed"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/5.2.0/../../../../microblaze-xilinx-elf/include"/>
+<includePath path="/opt/Xilinx/SDK/2016.4/gnu/microblaze/lin/bin/../microblaze-xilinx-elf/sysroot/usr/include"/>
 <definedSymbol symbol="__STDC__=1"/>
 <definedSymbol symbol="__cplusplus=199711L"/>
 <definedSymbol symbol="__STDC_HOSTED__=1"/>

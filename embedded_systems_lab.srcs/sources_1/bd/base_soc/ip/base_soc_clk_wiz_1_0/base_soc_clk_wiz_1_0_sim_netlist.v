@@ -1,10 +1,10 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-// Date        : Fri Nov  5 03:04:38 2021
+// Date        : Fri Nov  5 03:04:37 2021
 // Host        : primus running 64-bit Ubuntu 21.10
-// Command     : write_verilog -force -mode funcsim
-//               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_clk_wiz_1_0/base_soc_clk_wiz_1_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top base_soc_clk_wiz_1_0 -prefix
+//               base_soc_clk_wiz_1_0_ base_soc_clk_wiz_1_0_sim_netlist.v
 // Design      : base_soc_clk_wiz_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -39,7 +39,6 @@ module base_soc_clk_wiz_1_0
         .resetn(resetn));
 endmodule
 
-(* ORIG_REF_NAME = "base_soc_clk_wiz_1_0_clk_wiz" *) 
 module base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz
    (clk_out1,
     clk_out2,

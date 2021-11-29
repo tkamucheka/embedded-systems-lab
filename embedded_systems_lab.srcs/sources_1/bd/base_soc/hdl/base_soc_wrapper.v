@@ -1,8 +1,8 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-//Date        : Tue Nov  9 18:09:40 2021
-//Host        : primus running 64-bit Ubuntu 21.10
+//Date        : Mon Nov 29 01:09:36 2021
+//Host        : Primus running 64-bit Ubuntu 21.10
 //Command     : generate_target base_soc_wrapper.bd
 //Design      : base_soc_wrapper
 //Purpose     : IP block netlist

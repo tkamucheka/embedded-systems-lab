@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>LightSensor_example0</name>
-	<comment>Created by SDK v2016.4. ArtyBot_bsp - microblaze_0</comment>
+	<comment></comment>
 	<projects>
 		<project>ArtyBot_bsp</project>
 	</projects>

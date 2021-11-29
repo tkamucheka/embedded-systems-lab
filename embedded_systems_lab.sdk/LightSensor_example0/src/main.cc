@@ -8,7 +8,7 @@
 #include "xgpio.h"
 #include "xgpio_l.h"
 
-#define LS_SENSOR_BASEADDR XPAR_AXI_GPIO_PMOD_LS1_BASEADDR
+#define PMOD_LS1_BASEADDR XPAR_AXI_GPIO_PMOD_LS1_BASEADDR
 
 #define L_SENSOR 0x1
 #define R_SENSOR 0x2
@@ -21,8 +21,8 @@ void delay_ms(int ms)
 
 int main()
 {
-	volatile u32 *SensorData = (u32 *)LS_SENSOR_BASEADDR + XGPIO_DATA_OFFSET;
-	volatile u32 *SensorTristateReg = (u32 *)LS_SENSOR_BASEADDR + XGPIO_TRI_OFFSET;
+	volatile u32 *SensorData = (u32 *)PMOD_LS1_BASEADDR + XGPIO_DATA_OFFSET;
+	volatile u32 *SensorTristateReg = (u32 *)PMOD_LS1_BASEADDR + XGPIO_TRI_OFFSET;
 
 	*SensorTristateReg = 0xF;
 

@@ -349,31 +349,6 @@ CONFIG.use_bram_block {BRAM_Controller} \
   connect_bd_net -net SYS_Rst_1 [get_bd_pins SYS_Rst] [get_bd_pins dlmb_bram_if_cntlr/LMB_Rst] [get_bd_pins dlmb_v10/SYS_Rst] [get_bd_pins ilmb_bram_if_cntlr/LMB_Rst] [get_bd_pins ilmb_v10/SYS_Rst]
   connect_bd_net -net microblaze_0_Clk [get_bd_pins LMB_Clk] [get_bd_pins dlmb_bram_if_cntlr/LMB_Clk] [get_bd_pins dlmb_v10/LMB_Clk] [get_bd_pins ilmb_bram_if_cntlr/LMB_Clk] [get_bd_pins ilmb_v10/LMB_Clk]
 
-  # Perform GUI Layout
-  regenerate_bd_layout -hierarchy [get_bd_cells /microblaze_0_local_memory] -layout_string {
-   guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
-#  -string -flagsOSRD
-preplace port LMB_Clk -pg 1 -y 60 -defaultsOSRD
-preplace port ILMB -pg 1 -y 190 -defaultsOSRD
-preplace port DLMB -pg 1 -y 40 -defaultsOSRD
-preplace port SYS_Rst -pg 1 -y 80 -defaultsOSRD
-preplace inst ilmb_bram_if_cntlr -pg 1 -lvl 2 -y 200 -defaultsOSRD
-preplace inst dlmb_bram_if_cntlr -pg 1 -lvl 2 -y 80 -defaultsOSRD
-preplace inst lmb_bram -pg 1 -lvl 3 -y 90 -defaultsOSRD
-preplace inst ilmb_v10 -pg 1 -lvl 1 -y 210 -defaultsOSRD
-preplace inst dlmb_v10 -pg 1 -lvl 1 -y 60 -defaultsOSRD
-preplace netloc microblaze_0_dlmb 1 0 1 NJ
-preplace netloc SYS_Rst_1 1 0 2 20 130 240
-preplace netloc microblaze_0_ilmb_bus 1 1 1 250
-preplace netloc microblaze_0_Clk 1 0 2 30 140 230
-preplace netloc microblaze_0_dlmb_cntlr 1 2 1 N
-preplace netloc microblaze_0_ilmb 1 0 1 NJ
-preplace netloc microblaze_0_ilmb_cntlr 1 2 1 470
-preplace netloc microblaze_0_dlmb_bus 1 1 1 N
-levelinfo -pg 1 0 130 360 580 690 -top -10 -bot 280
-",
-}
-
   # Restore current instance
   current_bd_instance $oldCurInst
 }
@@ -537,17 +512,10 @@ CONFIG.MMCM_COMPENSATION.VALUE_SRC {DEFAULT} \
   # Create instance: microblaze_0, and set properties
   set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 microblaze_0 ]
   set_property -dict [ list \
-CONFIG.C_ADDR_SIZE {32} \
-CONFIG.C_CACHE_BYTE_SIZE {16384} \
-CONFIG.C_DCACHE_BYTE_SIZE {16384} \
 CONFIG.C_DEBUG_ENABLED {1} \
 CONFIG.C_D_AXI {1} \
 CONFIG.C_D_LMB {1} \
 CONFIG.C_I_LMB {1} \
-CONFIG.C_USE_DCACHE {0} \
-CONFIG.C_USE_ICACHE {0} \
-CONFIG.C_USE_MMU {0} \
-CONFIG.C_USE_MSR_INSTR {0} \
  ] $microblaze_0
 
   # Create instance: microblaze_0_axi_intc, and set properties
@@ -565,7 +533,7 @@ CONFIG.NUM_MI {7} \
   # Create instance: microblaze_0_axi_periph, and set properties
   set microblaze_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_0_axi_periph ]
   set_property -dict [ list \
-CONFIG.NUM_MI {3} \
+CONFIG.NUM_MI {2} \
 CONFIG.NUM_SI {1} \
  ] $microblaze_0_axi_periph
 
@@ -575,7 +543,7 @@ CONFIG.NUM_SI {1} \
   # Create instance: microblaze_axi_0_master, and set properties
   set microblaze_axi_0_master [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_axi_0_master ]
   set_property -dict [ list \
-CONFIG.NUM_MI {3} \
+CONFIG.NUM_MI {4} \
  ] $microblaze_axi_0_master
 
   # Create instance: microblaze_axi_0_mem, and set properties
@@ -649,7 +617,6 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_intf_net -intf_net Pmod_Dual_MAXSONAR_0_GPIO2 [get_bd_intf_pins Pmod_Dual_MAXSONAR_0/GPIO2] [get_bd_intf_pins pmod_bridge_0/GPIO_Bottom_Row]
   connect_bd_intf_net -intf_net S00_AXI_1 [get_bd_intf_pins microblaze_axi_0_master/M00_AXI] [get_bd_intf_pins microblaze_axi_0_mem/S00_AXI]
   connect_bd_intf_net -intf_net S00_AXI_2 [get_bd_intf_pins microblaze_0_axi_periph/S00_AXI] [get_bd_intf_pins microblaze_axi_0_master/M01_AXI]
-  connect_bd_intf_net -intf_net S00_AXI_3 [get_bd_intf_pins microblaze_0/M_AXI_DP] [get_bd_intf_pins microblaze_axi_0_master/S00_AXI]
   connect_bd_intf_net -intf_net S00_AXI_4 [get_bd_intf_pins microblaze_0_axi_io/S00_AXI] [get_bd_intf_pins microblaze_axi_0_master/M02_AXI]
   connect_bd_intf_net -intf_net axi_ethernetlite_0_MDIO [get_bd_intf_ports eth_mdio_mdc] [get_bd_intf_pins axi_ethernetlite_0/MDIO]
   connect_bd_intf_net -intf_net axi_ethernetlite_0_MII [get_bd_intf_ports eth_mii] [get_bd_intf_pins axi_ethernetlite_0/MII]
@@ -662,6 +629,8 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins microblaze_axi_0_mem/M00_AXI] [get_bd_intf_pins mig_7series_0/S_AXI]
   connect_bd_intf_net -intf_net axi_quad_spi_0_SPI_0 [get_bd_intf_ports qspi_flash] [get_bd_intf_pins axi_quad_spi_0/SPI_0]
   connect_bd_intf_net -intf_net axi_uartlite_0_UART [get_bd_intf_ports usb_uart] [get_bd_intf_pins axi_uartlite_0/UART]
+  connect_bd_intf_net -intf_net microblaze_0_M_AXI_DP [get_bd_intf_pins microblaze_0/M_AXI_DP] [get_bd_intf_pins microblaze_axi_0_master/S00_AXI]
+  connect_bd_intf_net -intf_net microblaze_0_axi_intc_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
   connect_bd_intf_net -intf_net microblaze_0_axi_io_M00_AXI [get_bd_intf_pins axi_ethernetlite_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M00_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_io_M01_AXI [get_bd_intf_pins axi_uartlite_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M01_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_io_M02_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M02_AXI]
@@ -670,12 +639,11 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_intf_net -intf_net microblaze_0_axi_io_M05_AXI [get_bd_intf_pins Pmod_Dual_MAXSONAR_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M05_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_io_M06_AXI [get_bd_intf_pins Pmod_DHB1_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_io/M06_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_periph_M01_AXI [get_bd_intf_pins axi_quad_spi_0/AXI_LITE] [get_bd_intf_pins microblaze_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_axi_periph_M02_AXI [get_bd_intf_pins axi_timer_0/S_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net microblaze_0_debug [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_0/DEBUG]
   connect_bd_intf_net -intf_net microblaze_0_dlmb_1 [get_bd_intf_pins microblaze_0/DLMB] [get_bd_intf_pins microblaze_0_local_memory/DLMB]
   connect_bd_intf_net -intf_net microblaze_0_ilmb_1 [get_bd_intf_pins microblaze_0/ILMB] [get_bd_intf_pins microblaze_0_local_memory/ILMB]
   connect_bd_intf_net -intf_net microblaze_0_intc_axi [get_bd_intf_pins microblaze_0_axi_intc/s_axi] [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net microblaze_0_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
+  connect_bd_intf_net -intf_net microblaze_axi_0_master_M03_AXI [get_bd_intf_pins axi_timer_0/S_AXI] [get_bd_intf_pins microblaze_axi_0_master/M03_AXI]
   connect_bd_intf_net -intf_net mig_7series_0_DDR3 [get_bd_intf_ports ddr3_sdram] [get_bd_intf_pins mig_7series_0/DDR3]
   connect_bd_intf_net -intf_net pmod_bridge_0_Pmod_out [get_bd_intf_ports jb] [get_bd_intf_pins pmod_bridge_0/Pmod_out]
   connect_bd_intf_net -intf_net pmod_bridge_1_Pmod_out [get_bd_intf_ports jd] [get_bd_intf_pins pmod_bridge_1/Pmod_out]
@@ -688,7 +656,7 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_net -net clk_wiz_1_clk_out1 [get_bd_pins clk_wiz_1/clk_out1] [get_bd_pins mig_7series_0/clk_ref_i]
   connect_bd_net -net clk_wiz_1_clk_out2 [get_bd_pins clk_wiz_1/clk_out2] [get_bd_pins mig_7series_0/sys_clk_i]
   connect_bd_net -net mdm_1_debug_sys_rst [get_bd_pins mdm_1/Debug_SYS_Rst] [get_bd_pins rst_mig_7series_0_83M/mb_debug_sys_rst]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins Pmod_DHB1_0/s_axi_aclk] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aclk] [get_bd_pins axi_ethernetlite_0/s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aclk] [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins axi_quad_spi_0/s_axi_aclk] [get_bd_pins axi_timer_0/s_axi_aclk] [get_bd_pins axi_uartlite_0/s_axi_aclk] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_intc/processor_clk] [get_bd_pins microblaze_0_axi_intc/s_axi_aclk] [get_bd_pins microblaze_0_axi_io/ACLK] [get_bd_pins microblaze_0_axi_io/M00_ACLK] [get_bd_pins microblaze_0_axi_io/M01_ACLK] [get_bd_pins microblaze_0_axi_io/M02_ACLK] [get_bd_pins microblaze_0_axi_io/M03_ACLK] [get_bd_pins microblaze_0_axi_io/M04_ACLK] [get_bd_pins microblaze_0_axi_io/M05_ACLK] [get_bd_pins microblaze_0_axi_io/M06_ACLK] [get_bd_pins microblaze_0_axi_io/S00_ACLK] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/M01_ACLK] [get_bd_pins microblaze_0_axi_periph/M02_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins microblaze_axi_0_master/ACLK] [get_bd_pins microblaze_axi_0_master/M00_ACLK] [get_bd_pins microblaze_axi_0_master/M01_ACLK] [get_bd_pins microblaze_axi_0_master/M02_ACLK] [get_bd_pins microblaze_axi_0_master/S00_ACLK] [get_bd_pins microblaze_axi_0_mem/ACLK] [get_bd_pins microblaze_axi_0_mem/M00_ACLK] [get_bd_pins microblaze_axi_0_mem/S00_ACLK] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_83M/slowest_sync_clk]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins Pmod_DHB1_0/s_axi_aclk] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aclk] [get_bd_pins axi_ethernetlite_0/s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aclk] [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins axi_quad_spi_0/s_axi_aclk] [get_bd_pins axi_timer_0/s_axi_aclk] [get_bd_pins axi_uartlite_0/s_axi_aclk] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_intc/processor_clk] [get_bd_pins microblaze_0_axi_intc/s_axi_aclk] [get_bd_pins microblaze_0_axi_io/ACLK] [get_bd_pins microblaze_0_axi_io/M00_ACLK] [get_bd_pins microblaze_0_axi_io/M01_ACLK] [get_bd_pins microblaze_0_axi_io/M02_ACLK] [get_bd_pins microblaze_0_axi_io/M03_ACLK] [get_bd_pins microblaze_0_axi_io/M04_ACLK] [get_bd_pins microblaze_0_axi_io/M05_ACLK] [get_bd_pins microblaze_0_axi_io/M06_ACLK] [get_bd_pins microblaze_0_axi_io/S00_ACLK] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/M01_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins microblaze_axi_0_master/ACLK] [get_bd_pins microblaze_axi_0_master/M00_ACLK] [get_bd_pins microblaze_axi_0_master/M01_ACLK] [get_bd_pins microblaze_axi_0_master/M02_ACLK] [get_bd_pins microblaze_axi_0_master/M03_ACLK] [get_bd_pins microblaze_axi_0_master/S00_ACLK] [get_bd_pins microblaze_axi_0_mem/ACLK] [get_bd_pins microblaze_axi_0_mem/M00_ACLK] [get_bd_pins microblaze_axi_0_mem/S00_ACLK] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_83M/slowest_sync_clk]
   connect_bd_net -net microblaze_0_intr [get_bd_pins microblaze_0_axi_intc/intr] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_pins rst_mig_7series_0_83M/dcm_locked]
   connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_pins rst_mig_7series_0_83M/ext_reset_in]
@@ -696,7 +664,7 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_net -net rst_mig_7series_0_83M_bus_struct_reset [get_bd_pins microblaze_0_local_memory/SYS_Rst] [get_bd_pins rst_mig_7series_0_83M/bus_struct_reset]
   connect_bd_net -net rst_mig_7series_0_83M_interconnect_aresetn [get_bd_pins microblaze_0_axi_io/ARESETN] [get_bd_pins microblaze_0_axi_periph/ARESETN] [get_bd_pins microblaze_axi_0_master/ARESETN] [get_bd_pins microblaze_axi_0_mem/ARESETN] [get_bd_pins rst_mig_7series_0_83M/interconnect_aresetn]
   connect_bd_net -net rst_mig_7series_0_83M_mb_reset [get_bd_pins microblaze_0/Reset] [get_bd_pins microblaze_0_axi_intc/processor_rst] [get_bd_pins rst_mig_7series_0_83M/mb_reset]
-  connect_bd_net -net rst_mig_7series_0_83M_peripheral_aresetn [get_bd_pins Pmod_DHB1_0/s_axi_aresetn] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aresetn] [get_bd_pins axi_ethernetlite_0/s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aresetn] [get_bd_pins axi_quad_spi_0/s_axi_aresetn] [get_bd_pins axi_timer_0/s_axi_aresetn] [get_bd_pins axi_uartlite_0/s_axi_aresetn] [get_bd_pins microblaze_0_axi_intc/s_axi_aresetn] [get_bd_pins microblaze_0_axi_io/M00_ARESETN] [get_bd_pins microblaze_0_axi_io/M01_ARESETN] [get_bd_pins microblaze_0_axi_io/M02_ARESETN] [get_bd_pins microblaze_0_axi_io/M03_ARESETN] [get_bd_pins microblaze_0_axi_io/M04_ARESETN] [get_bd_pins microblaze_0_axi_io/M05_ARESETN] [get_bd_pins microblaze_0_axi_io/M06_ARESETN] [get_bd_pins microblaze_0_axi_io/S00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M01_ARESETN] [get_bd_pins microblaze_0_axi_periph/M02_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins microblaze_axi_0_master/M00_ARESETN] [get_bd_pins microblaze_axi_0_master/M01_ARESETN] [get_bd_pins microblaze_axi_0_master/M02_ARESETN] [get_bd_pins microblaze_axi_0_master/S00_ARESETN] [get_bd_pins microblaze_axi_0_mem/M00_ARESETN] [get_bd_pins microblaze_axi_0_mem/S00_ARESETN] [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_83M/peripheral_aresetn]
+  connect_bd_net -net rst_mig_7series_0_83M_peripheral_aresetn [get_bd_pins Pmod_DHB1_0/s_axi_aresetn] [get_bd_pins Pmod_Dual_MAXSONAR_0/s_axi_aresetn] [get_bd_pins axi_ethernetlite_0/s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_gpio_Pmod_LS1/s_axi_aresetn] [get_bd_pins axi_quad_spi_0/s_axi_aresetn] [get_bd_pins axi_timer_0/s_axi_aresetn] [get_bd_pins axi_uartlite_0/s_axi_aresetn] [get_bd_pins microblaze_0_axi_intc/s_axi_aresetn] [get_bd_pins microblaze_0_axi_io/M00_ARESETN] [get_bd_pins microblaze_0_axi_io/M01_ARESETN] [get_bd_pins microblaze_0_axi_io/M02_ARESETN] [get_bd_pins microblaze_0_axi_io/M03_ARESETN] [get_bd_pins microblaze_0_axi_io/M04_ARESETN] [get_bd_pins microblaze_0_axi_io/M05_ARESETN] [get_bd_pins microblaze_0_axi_io/M06_ARESETN] [get_bd_pins microblaze_0_axi_io/S00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/M01_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins microblaze_axi_0_master/M00_ARESETN] [get_bd_pins microblaze_axi_0_master/M01_ARESETN] [get_bd_pins microblaze_axi_0_master/M02_ARESETN] [get_bd_pins microblaze_axi_0_master/M03_ARESETN] [get_bd_pins microblaze_axi_0_master/S00_ARESETN] [get_bd_pins microblaze_axi_0_mem/M00_ARESETN] [get_bd_pins microblaze_axi_0_mem/S00_ARESETN] [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_83M/peripheral_aresetn]
   connect_bd_net -net sys_clock_1 [get_bd_ports sys_clock] [get_bd_pins clk_wiz_1/clk_in1]
 
   # Create address segments
@@ -721,98 +689,98 @@ CONFIG.NUM_PORTS {3} \
   regenerate_bd_layout -layout_string {
    guistr: "# # String gsaved with Nlview 6.6.5b  2016-09-06 bk=1.3687 VDI=39 GEI=35 GUI=JA:1.6
 #  -string -flagsOSRD
-preplace port ddr3_sdram -pg 1 -y 1100 -defaultsOSRD
-preplace port ja -pg 1 -y 170 -defaultsOSRD
-preplace port eth_mii -pg 1 -y 260 -defaultsOSRD
+preplace port ddr3_sdram -pg 1 -y 690 -defaultsOSRD
+preplace port ja -pg 1 -y 180 -defaultsOSRD
+preplace port eth_mii -pg 1 -y 570 -defaultsOSRD
 preplace port jb -pg 1 -y 70 -defaultsOSRD
-preplace port qspi_flash -pg 1 -y 880 -defaultsOSRD
-preplace port eth_mdio_mdc -pg 1 -y 280 -defaultsOSRD
-preplace port sys_clock -pg 1 -y 1200 -defaultsOSRD
-preplace port jd -pg 1 -y 530 -defaultsOSRD
-preplace port usb_uart -pg 1 -y 750 -defaultsOSRD
-preplace port push_buttons_4bits -pg 1 -y 640 -defaultsOSRD
-preplace port rgb_led -pg 1 -y 410 -defaultsOSRD
-preplace port led_4bits -pg 1 -y 620 -defaultsOSRD
-preplace port reset -pg 1 -y 1120 -defaultsOSRD
-preplace port dip_switches_4bits -pg 1 -y 430 -defaultsOSRD
-preplace inst microblaze_axi_0_mem -pg 1 -lvl 7 -y 980 -defaultsOSRD
-preplace inst rst_mig_7series_0_83M -pg 1 -lvl 1 -y 860 -defaultsOSRD
+preplace port qspi_flash -pg 1 -y 1190 -defaultsOSRD
+preplace port eth_mdio_mdc -pg 1 -y 590 -defaultsOSRD
+preplace port sys_clock -pg 1 -y 1140 -defaultsOSRD
+preplace port jd -pg 1 -y 290 -defaultsOSRD
+preplace port usb_uart -pg 1 -y 1040 -defaultsOSRD
+preplace port push_buttons_4bits -pg 1 -y 890 -defaultsOSRD
+preplace port rgb_led -pg 1 -y 390 -defaultsOSRD
+preplace port led_4bits -pg 1 -y 870 -defaultsOSRD
+preplace port reset -pg 1 -y 1160 -defaultsOSRD
+preplace port dip_switches_4bits -pg 1 -y 410 -defaultsOSRD
+preplace inst microblaze_axi_0_mem -pg 1 -lvl 7 -y 500 -defaultsOSRD
+preplace inst rst_mig_7series_0_83M -pg 1 -lvl 1 -y 1040 -defaultsOSRD
 preplace inst axi_gpio_Pmod_LS1 -pg 1 -lvl 7 -y 190 -defaultsOSRD
-preplace inst mig_7series_0 -pg 1 -lvl 8 -y 1140 -defaultsOSRD
-preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 660 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 2 -y 420 -defaultsOSRD
+preplace inst mig_7series_0 -pg 1 -lvl 8 -y 730 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 870 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -y 650 -defaultsOSRD
 preplace inst pmod_bridge_0 -pg 1 -lvl 8 -y 70 -defaultsOSRD
-preplace inst axi_timer_0 -pg 1 -lvl 3 -y 520 -defaultsOSRD
-preplace inst axi_gpio_0 -pg 1 -lvl 8 -y 640 -defaultsOSRD
-preplace inst Pmod_DHB1_0 -pg 1 -lvl 7 -y 480 -defaultsOSRD
-preplace inst pmod_bridge_1 -pg 1 -lvl 8 -y 530 -defaultsOSRD
-preplace inst microblaze_axi_0_master -pg 1 -lvl 5 -y 520 -defaultsOSRD
-preplace inst axi_gpio_1 -pg 1 -lvl 8 -y 420 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 6 -y 580 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 8 -y 890 -defaultsOSRD
+preplace inst Pmod_DHB1_0 -pg 1 -lvl 7 -y 310 -defaultsOSRD
+preplace inst pmod_bridge_1 -pg 1 -lvl 8 -y 290 -defaultsOSRD
+preplace inst microblaze_axi_0_master -pg 1 -lvl 5 -y 500 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 8 -y 400 -defaultsOSRD
 preplace inst Pmod_Dual_MAXSONAR_0 -pg 1 -lvl 7 -y 70 -defaultsOSRD
-preplace inst pmod_bridge_2 -pg 1 -lvl 8 -y 170 -defaultsOSRD
-preplace inst axi_ethernetlite_0 -pg 1 -lvl 8 -y 280 -defaultsOSRD
-preplace inst mdm_1 -pg 1 -lvl 3 -y 920 -defaultsOSRD
-preplace inst microblaze_0_axi_intc -pg 1 -lvl 3 -y 730 -defaultsOSRD
-preplace inst microblaze_0 -pg 1 -lvl 4 -y 760 -defaultsOSRD
-preplace inst axi_uartlite_0 -pg 1 -lvl 8 -y 760 -defaultsOSRD
-preplace inst microblaze_0_axi_io -pg 1 -lvl 6 -y 620 -defaultsOSRD
-preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -y 780 -defaultsOSRD
-preplace inst clk_wiz_1 -pg 1 -lvl 7 -y 1190 -defaultsOSRD
-preplace inst axi_quad_spi_0 -pg 1 -lvl 8 -y 890 -defaultsOSRD
-preplace netloc Pmod_DHB1_0_GPIO 1 7 1 2610
+preplace inst pmod_bridge_2 -pg 1 -lvl 8 -y 180 -defaultsOSRD
+preplace inst axi_ethernetlite_0 -pg 1 -lvl 8 -y 590 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 3 -y 1020 -defaultsOSRD
+preplace inst microblaze_0_axi_intc -pg 1 -lvl 3 -y 840 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 4 -y 870 -defaultsOSRD
+preplace inst axi_uartlite_0 -pg 1 -lvl 8 -y 1050 -defaultsOSRD
+preplace inst microblaze_0_axi_io -pg 1 -lvl 6 -y 230 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -y 880 -defaultsOSRD
+preplace inst clk_wiz_1 -pg 1 -lvl 7 -y 1100 -defaultsOSRD
+preplace inst axi_quad_spi_0 -pg 1 -lvl 8 -y 1200 -defaultsOSRD
 preplace netloc axi_quad_spi_0_SPI_0 1 8 1 NJ
-preplace netloc mig_7series_0_mmcm_locked 1 0 9 30 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 NJ 1110 2520J 1250 2890
-preplace netloc microblaze_0_axi_io_M06_AXI 1 6 1 2210
+preplace netloc Pmod_DHB1_0_GPIO 1 7 1 2580
+preplace netloc mig_7series_0_mmcm_locked 1 0 9 20 1130 NJ 1130 NJ 1130 NJ 1130 NJ 1130 NJ 1130 2240J 970 NJ 970 2890
 preplace netloc axi_ethernetlite_0_MDIO 1 8 1 NJ
+preplace netloc microblaze_0_axi_io_M06_AXI 1 6 1 N
 preplace netloc pmod_bridge_2_Pmod_out 1 8 1 NJ
 preplace netloc mig_7series_0_DDR3 1 8 1 NJ
-preplace netloc microblaze_0_intr 1 2 1 760
-preplace netloc microblaze_0_Clk 1 0 9 20 280 430 280 780 280 1040 280 1550 280 1900 280 2220 280 2550 1240 2900
-preplace netloc microblaze_0_interrupt 1 3 1 N
-preplace netloc microblaze_0_intc_axi 1 2 1 770
-preplace netloc axi_gpio_Pmod_LS1_ip2intc_irpt 1 1 7 440 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 2520
-preplace netloc rst_mig_7series_0_83M_peripheral_aresetn 1 1 7 410 300 790 300 NJ 300 1570 300 1870 300 2230 300 2590
-preplace netloc microblaze_0_ilmb_1 1 4 1 1520
+preplace netloc microblaze_0_intr 1 2 1 740
+preplace netloc microblaze_0_Clk 1 0 9 -10 1190 400 1190 750 1190 1030 1190 1510 1190 1860 1190 2220 1190 2580 820 2880
+preplace netloc microblaze_0_intc_axi 1 2 1 730
+preplace netloc axi_gpio_Pmod_LS1_ip2intc_irpt 1 1 7 430 1080 NJ 1080 NJ 1080 NJ 1080 NJ 1080 2250J 1000 2550
+preplace netloc rst_mig_7series_0_83M_peripheral_aresetn 1 1 7 410 1230 780 1230 NJ 1230 1520 1230 1870 1230 2230 1230 2590
+preplace netloc microblaze_0_M_AXI_DP 1 4 1 1490
+preplace netloc microblaze_0_ilmb_1 1 4 1 N
 preplace netloc pmod_bridge_0_Pmod_out 1 8 1 NJ
-preplace netloc axi_gpio_Pmod_LS1_GPIO 1 7 1 2520
-preplace netloc microblaze_0_axi_io_M00_AXI 1 6 2 NJ 560 2530
-preplace netloc sys_clock_1 1 0 7 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ
-preplace netloc microblaze_0_axi_io_M02_AXI 1 6 2 NJ 600 2570
+preplace netloc axi_gpio_Pmod_LS1_GPIO 1 7 1 N
+preplace netloc microblaze_0_axi_io_M00_AXI 1 6 2 2170 620 2560J
+preplace netloc sys_clock_1 1 0 7 NJ 1140 NJ 1140 NJ 1140 NJ 1140 NJ 1140 NJ 1140 2270J
 preplace netloc axi_gpio_1_GPIO2 1 8 1 NJ
-preplace netloc rst_mig_7series_0_83M_mb_reset 1 1 3 NJ 820 770 830 1060J
-preplace netloc microblaze_0_axi_io_M03_AXI 1 6 2 NJ 620 2560
-preplace netloc S00_AXI_1 1 5 2 1860 920 NJ
-preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 6 740 840 NJ 840 1540J 860 NJ 860 NJ 860 NJ
+preplace netloc microblaze_0_axi_io_M02_AXI 1 6 2 2190 870 NJ
+preplace netloc rst_mig_7series_0_83M_mb_reset 1 1 3 390J 1030 760 950 1020J
+preplace netloc microblaze_0_axi_io_M03_AXI 1 6 2 2210 380 NJ
 preplace netloc axi_gpio_0_GPIO2 1 8 1 NJ
-preplace netloc clk_wiz_1_clk_out1 1 7 1 2600
-preplace netloc S00_AXI_2 1 1 5 450 320 NJ 320 NJ 320 NJ 320 1850
-preplace netloc axi_interconnect_0_M00_AXI 1 7 1 2540
+preplace netloc S00_AXI_1 1 5 2 NJ 470 2160
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 6 720 740 NJ 740 NJ 740 NJ 740 NJ 740 2560J
+preplace netloc clk_wiz_1_clk_out1 1 7 1 2570
 preplace netloc pmod_bridge_1_Pmod_out 1 8 1 NJ
 preplace netloc axi_uartlite_0_UART 1 8 1 NJ
 preplace netloc axi_gpio_0_GPIO 1 8 1 NJ
-preplace netloc axi_gpio_0_ip2intc_irpt 1 1 8 460 1100 NJ 1100 NJ 1100 NJ 1100 NJ 1100 NJ 1100 2530J 1230 2910
-preplace netloc clk_wiz_1_clk_out2 1 7 1 2610
-preplace netloc mig_7series_0_ui_clk_sync_rst 1 0 9 30 770 400J 860 NJ 860 NJ 860 1520J 870 NJ 870 2240J 840 2520J 970 2890
-preplace netloc S00_AXI_3 1 4 1 1530
-preplace netloc microblaze_0_dlmb_1 1 4 1 1540
-preplace netloc microblaze_0_axi_periph_M02_AXI 1 2 1 750
-preplace netloc axi_gpio_Pmod_LS1_GPIO2 1 7 1 2520
-preplace netloc microblaze_0_axi_io_M01_AXI 1 6 2 NJ 580 2580
-preplace netloc S00_AXI_4 1 5 1 1880
-preplace netloc microblaze_0_debug 1 3 1 1050
-preplace netloc Pmod_DHB1_0_GPIO2 1 7 1 2600
-preplace netloc Pmod_Dual_MAXSONAR_0_GPIO2 1 7 1 N
+preplace netloc S00_AXI_2 1 1 5 390 280 NJ 280 NJ 280 NJ 280 1830
+preplace netloc axi_interconnect_0_M00_AXI 1 7 1 2570
+preplace netloc axi_gpio_0_ip2intc_irpt 1 1 8 420 1010 770J 960 NJ 960 NJ 960 NJ 960 NJ 960 NJ 960 2880
+preplace netloc clk_wiz_1_clk_out2 1 7 1 2600
+preplace netloc mig_7series_0_ui_clk_sync_rst 1 0 9 0 1170 NJ 1170 NJ 1170 NJ 1170 NJ 1170 NJ 1170 NJ 1170 2550J 1120 2900
+preplace netloc microblaze_0_dlmb_1 1 4 1 N
+preplace netloc axi_gpio_Pmod_LS1_GPIO2 1 7 1 N
+preplace netloc microblaze_0_axi_io_M01_AXI 1 6 2 2200 1030 NJ
+preplace netloc microblaze_0_axi_intc_interrupt 1 3 1 N
+preplace netloc microblaze_0_debug 1 3 1 1010
 preplace netloc axi_gpio_1_GPIO 1 8 1 NJ
 preplace netloc axi_ethernetlite_0_MII 1 8 1 NJ
-preplace netloc mdm_1_debug_sys_rst 1 0 4 20 980 NJ 980 NJ 980 1030
-preplace netloc rst_mig_7series_0_83M_interconnect_aresetn 1 1 6 420 350 NJ 350 NJ 350 1560 350 1890 350 2200J
-preplace netloc reset_1 1 0 8 NJ 1120 NJ 1120 NJ 1120 NJ 1120 NJ 1120 NJ 1120 2210 1120 NJ
-preplace netloc microblaze_0_axi_io_M05_AXI 1 6 1 2180
+preplace netloc S00_AXI_4 1 5 1 1840
+preplace netloc Pmod_DHB1_0_GPIO2 1 7 1 2590
+preplace netloc Pmod_Dual_MAXSONAR_0_GPIO2 1 7 1 N
+preplace netloc mdm_1_debug_sys_rst 1 0 4 10 1150 NJ 1150 NJ 1150 1020
+preplace netloc rst_mig_7series_0_83M_interconnect_aresetn 1 1 6 370 90 NJ 90 NJ 90 1520 90 1850 480 NJ
+preplace netloc reset_1 1 0 8 NJ 1160 NJ 1160 NJ 1160 NJ 1160 NJ 1160 NJ 1160 2260 710 NJ
+preplace netloc microblaze_axi_0_master_M03_AXI 1 5 1 N
+preplace netloc microblaze_0_axi_io_M05_AXI 1 6 1 2160
 preplace netloc Pmod_Dual_MAXSONAR_0_GPIO 1 7 1 N
-preplace netloc microblaze_0_axi_io_M04_AXI 1 6 1 2190
-preplace netloc rst_mig_7series_0_83M_bus_struct_reset 1 1 4 390J 850 NJ 850 NJ 850 1560
-preplace netloc axi_timer_0_interrupt 1 1 3 460 330 NJ 330 1030
-levelinfo -pg 1 0 220 600 910 1290 1710 2040 2380 2750 2930 -top 0 -bot 1260
+preplace netloc microblaze_0_axi_io_M04_AXI 1 6 1 2180
+preplace netloc rst_mig_7series_0_83M_bus_struct_reset 1 1 4 380J 730 NJ 730 NJ 730 1500
+preplace netloc axi_timer_0_interrupt 1 1 6 440 720 NJ 720 NJ 720 NJ 720 NJ 720 2160
+levelinfo -pg 1 -30 200 580 900 1260 1690 2020 2410 2740 2920 -top 0 -bot 1280
 ",
 }
 
