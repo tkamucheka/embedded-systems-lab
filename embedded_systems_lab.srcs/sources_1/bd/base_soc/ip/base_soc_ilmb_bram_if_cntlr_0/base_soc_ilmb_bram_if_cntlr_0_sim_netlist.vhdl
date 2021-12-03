@@ -1,10 +1,10 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Tue Nov  9 14:56:12 2021
--- Host        : primus running 64-bit Ubuntu 21.10
--- Command     : write_vhdl -force -mode funcsim -rename_top base_soc_ilmb_bram_if_cntlr_0 -prefix
---               base_soc_ilmb_bram_if_cntlr_0_ base_soc_ilmb_bram_if_cntlr_0_sim_netlist.vhdl
+-- Date        : Thu Dec  2 03:17:57 2021
+-- Host        : Primus running 64-bit Ubuntu 21.10
+-- Command     : write_vhdl -force -mode funcsim
+--               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_ilmb_bram_if_cntlr_0/base_soc_ilmb_bram_if_cntlr_0_sim_netlist.vhdl
 -- Design      : base_soc_ilmb_bram_if_cntlr_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -113,7 +113,7 @@ entity base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_HIGHADDR : string;
-  attribute C_HIGHADDR of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000000000011111111111111111";
+  attribute C_HIGHADDR of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000000000000000111111111111";
   attribute C_INTERCONNECT : integer;
   attribute C_INTERCONNECT of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_LMB_AWIDTH : integer;
@@ -121,7 +121,7 @@ entity base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr is
   attribute C_LMB_DWIDTH : integer;
   attribute C_LMB_DWIDTH of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 32;
   attribute C_MASK : string;
-  attribute C_MASK of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000000000000000000000000000";
+  attribute C_MASK of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000010000000000000000000000000000000";
   attribute C_MASK1 : string;
   attribute C_MASK1 of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000100000000000000000000000";
   attribute C_MASK2 : string;
@@ -142,6 +142,8 @@ entity base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr is
   attribute C_UE_FAILING_REGISTERS of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_WRITE_ACCESS : integer;
   attribute C_WRITE_ACCESS of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 2;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "lmb_bram_if_cntlr";
 end base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr;
 
 architecture STRUCTURE of base_soc_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr is
@@ -329,52 +331,57 @@ begin
   \^lmb_addrstrobe\ <= LMB_AddrStrobe;
   \^lmb_clk\ <= LMB_Clk;
   \^lmb_writedbus\(0 to 31) <= LMB_WriteDBus(0 to 31);
-\BRAM_WEN_A[0]_INST_0\: unisim.vcomponents.LUT2
+\BRAM_WEN_A[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"8"
+      INIT => X"20"
     )
         port map (
       I0 => LMB_WriteStrobe,
-      I1 => LMB_BE(0),
+      I1 => \^lmb_abus\(0),
+      I2 => LMB_BE(0),
       O => BRAM_WEN_A(0)
     );
-\BRAM_WEN_A[1]_INST_0\: unisim.vcomponents.LUT2
+\BRAM_WEN_A[1]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"8"
+      INIT => X"40"
     )
         port map (
-      I0 => LMB_WriteStrobe,
-      I1 => LMB_BE(1),
+      I0 => \^lmb_abus\(0),
+      I1 => LMB_WriteStrobe,
+      I2 => LMB_BE(1),
       O => BRAM_WEN_A(1)
     );
-\BRAM_WEN_A[2]_INST_0\: unisim.vcomponents.LUT2
+\BRAM_WEN_A[2]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"8"
+      INIT => X"40"
     )
         port map (
-      I0 => LMB_WriteStrobe,
-      I1 => LMB_BE(2),
+      I0 => \^lmb_abus\(0),
+      I1 => LMB_WriteStrobe,
+      I2 => LMB_BE(2),
       O => BRAM_WEN_A(2)
     );
-\BRAM_WEN_A[3]_INST_0\: unisim.vcomponents.LUT2
+\BRAM_WEN_A[3]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"8"
+      INIT => X"40"
     )
         port map (
-      I0 => LMB_WriteStrobe,
-      I1 => LMB_BE(3),
+      I0 => \^lmb_abus\(0),
+      I1 => LMB_WriteStrobe,
+      I2 => LMB_BE(3),
       O => BRAM_WEN_A(3)
     );
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
-\No_ECC.Sl_Rdy_i_1\: unisim.vcomponents.LUT1
+\No_ECC.Sl_Rdy_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"1"
     )
         port map (
-      I0 => LMB_Rst,
+      I0 => \^lmb_abus\(0),
+      I1 => LMB_Rst,
       O => \No_ECC.Sl_Rdy_i_1_n_0\
     );
 \No_ECC.Sl_Rdy_reg\: unisim.vcomponents.FDRE
@@ -497,7 +504,7 @@ architecture STRUCTURE of base_soc_ilmb_bram_if_cntlr_0 is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of U0 : label is 0;
   attribute C_HIGHADDR : string;
-  attribute C_HIGHADDR of U0 : label is "64'b0000000000000000000000000000000000000000000000011111111111111111";
+  attribute C_HIGHADDR of U0 : label is "64'b0000000000000000000000000000000000000000000000000000111111111111";
   attribute C_INTERCONNECT : integer;
   attribute C_INTERCONNECT of U0 : label is 0;
   attribute C_LMB_AWIDTH : integer;
@@ -505,7 +512,7 @@ architecture STRUCTURE of base_soc_ilmb_bram_if_cntlr_0 is
   attribute C_LMB_DWIDTH : integer;
   attribute C_LMB_DWIDTH of U0 : label is 32;
   attribute C_MASK : string;
-  attribute C_MASK of U0 : label is "64'b0000000000000000000000000000000000000000000000000000000000000000";
+  attribute C_MASK of U0 : label is "64'b0000000000000000000000000000000010000000000000000000000000000000";
   attribute C_MASK1 : string;
   attribute C_MASK1 of U0 : label is "64'b0000000000000000000000000000000000000000100000000000000000000000";
   attribute C_MASK2 : string;

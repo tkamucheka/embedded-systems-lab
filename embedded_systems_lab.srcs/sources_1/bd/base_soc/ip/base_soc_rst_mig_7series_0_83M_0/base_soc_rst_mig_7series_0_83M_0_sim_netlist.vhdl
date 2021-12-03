@@ -1,11 +1,11 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Tue Oct 12 14:19:23 2021
--- Host        : primus running 64-bit Ubuntu 21.04
--- Command     : write_vhdl -force -mode funcsim
---               /mnt/Storm/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_rst_mig_7series_0_83M_0/base_soc_rst_mig_7series_0_83M_0_sim_netlist.vhdl
--- Design      : base_soc_rst_mig_7series_0_83M_0
+-- Date        : Fri Nov  5 03:04:32 2021
+-- Host        : primus running 64-bit Ubuntu 21.10
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_soc_rst_mig_7series_0_83M_0 -prefix
+--               base_soc_rst_mig_7series_0_83M_0_ base_soc_rst_clk_wiz_1_100M_0_sim_netlist.vhdl
+-- Design      : base_soc_rst_clk_wiz_1_100M_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a35ticsg324-1L
@@ -16,113 +16,6 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity base_soc_rst_mig_7series_0_83M_0_cdc_sync is
   port (
-    lpf_exr_reg : out STD_LOGIC;
-    scndry_out : out STD_LOGIC;
-    ext_reset_in : in STD_LOGIC;
-    mb_debug_sys_rst : in STD_LOGIC;
-    lpf_exr : in STD_LOGIC;
-    p_3_out : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    slowest_sync_clk : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_cdc_sync : entity is "cdc_sync";
-end base_soc_rst_mig_7series_0_83M_0_cdc_sync;
-
-architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_cdc_sync is
-  signal exr_d1 : STD_LOGIC;
-  signal s_level_out_d1_cdc_to : STD_LOGIC;
-  signal s_level_out_d2 : STD_LOGIC;
-  signal s_level_out_d3 : STD_LOGIC;
-  signal \^scndry_out\ : STD_LOGIC;
-  attribute ASYNC_REG : boolean;
-  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is std.standard.true;
-  attribute BOX_TYPE : string;
-  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is "PRIMITIVE";
-  attribute XILINX_LEGACY_PRIM : string;
-  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is "FDR";
-  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is std.standard.true;
-  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is "PRIMITIVE";
-  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is "FDR";
-  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is std.standard.true;
-  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is "PRIMITIVE";
-  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is "FDR";
-  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is std.standard.true;
-  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is "PRIMITIVE";
-  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is "FDR";
-begin
-  scndry_out <= \^scndry_out\;
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => slowest_sync_clk,
-      CE => '1',
-      D => exr_d1,
-      Q => s_level_out_d1_cdc_to,
-      R => '0'
-    );
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => ext_reset_in,
-      I1 => mb_debug_sys_rst,
-      O => exr_d1
-    );
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => slowest_sync_clk,
-      CE => '1',
-      D => s_level_out_d1_cdc_to,
-      Q => s_level_out_d2,
-      R => '0'
-    );
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => slowest_sync_clk,
-      CE => '1',
-      D => s_level_out_d2,
-      Q => s_level_out_d3,
-      R => '0'
-    );
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => slowest_sync_clk,
-      CE => '1',
-      D => s_level_out_d3,
-      Q => \^scndry_out\,
-      R => '0'
-    );
-lpf_exr_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"EAAAAAA8"
-    )
-        port map (
-      I0 => lpf_exr,
-      I1 => p_3_out(0),
-      I2 => \^scndry_out\,
-      I3 => p_3_out(1),
-      I4 => p_3_out(2),
-      O => lpf_exr_reg
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 is
-  port (
     lpf_asr_reg : out STD_LOGIC;
     scndry_out : out STD_LOGIC;
     aux_reset_in : in STD_LOGIC;
@@ -132,11 +25,9 @@ entity base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 is
     p_2_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 : entity is "cdc_sync";
-end base_soc_rst_mig_7series_0_83M_0_cdc_sync_0;
+end base_soc_rst_mig_7series_0_83M_0_cdc_sync;
 
-architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 is
+architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_cdc_sync is
   signal asr_d1 : STD_LOGIC;
   signal s_level_out_d1_cdc_to : STD_LOGIC;
   signal s_level_out_d2 : STD_LOGIC;
@@ -170,7 +61,7 @@ begin
       Q => s_level_out_d1_cdc_to,
       R => '0'
     );
-\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0\: unisim.vcomponents.LUT1
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
@@ -228,6 +119,113 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
+entity base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 is
+  port (
+    lpf_exr_reg : out STD_LOGIC;
+    scndry_out : out STD_LOGIC;
+    lpf_exr : in STD_LOGIC;
+    p_3_out : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    mb_debug_sys_rst : in STD_LOGIC;
+    ext_reset_in : in STD_LOGIC;
+    slowest_sync_clk : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 : entity is "cdc_sync";
+end base_soc_rst_mig_7series_0_83M_0_cdc_sync_0;
+
+architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_cdc_sync_0 is
+  signal \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0\ : STD_LOGIC;
+  signal s_level_out_d1_cdc_to : STD_LOGIC;
+  signal s_level_out_d2 : STD_LOGIC;
+  signal s_level_out_d3 : STD_LOGIC;
+  signal \^scndry_out\ : STD_LOGIC;
+  attribute ASYNC_REG : boolean;
+  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is std.standard.true;
+  attribute BOX_TYPE : string;
+  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is "PRIMITIVE";
+  attribute XILINX_LEGACY_PRIM : string;
+  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\ : label is "FDR";
+  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is std.standard.true;
+  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is "PRIMITIVE";
+  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\ : label is "FDR";
+  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is std.standard.true;
+  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is "PRIMITIVE";
+  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\ : label is "FDR";
+  attribute ASYNC_REG of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is std.standard.true;
+  attribute BOX_TYPE of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is "PRIMITIVE";
+  attribute XILINX_LEGACY_PRIM of \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\ : label is "FDR";
+begin
+  scndry_out <= \^scndry_out\;
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => slowest_sync_clk,
+      CE => '1',
+      D => \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0\,
+      Q => s_level_out_d1_cdc_to,
+      R => '0'
+    );
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"B"
+    )
+        port map (
+      I0 => mb_debug_sys_rst,
+      I1 => ext_reset_in,
+      O => \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0\
+    );
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => slowest_sync_clk,
+      CE => '1',
+      D => s_level_out_d1_cdc_to,
+      Q => s_level_out_d2,
+      R => '0'
+    );
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => slowest_sync_clk,
+      CE => '1',
+      D => s_level_out_d2,
+      Q => s_level_out_d3,
+      R => '0'
+    );
+\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => slowest_sync_clk,
+      CE => '1',
+      D => s_level_out_d3,
+      Q => \^scndry_out\,
+      R => '0'
+    );
+lpf_exr_i_1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"EAAAAAA8"
+    )
+        port map (
+      I0 => lpf_exr,
+      I1 => p_3_out(0),
+      I2 => \^scndry_out\,
+      I3 => p_3_out(1),
+      I4 => p_3_out(2),
+      O => lpf_exr_reg
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
 entity base_soc_rst_mig_7series_0_83M_0_upcnt_n is
   port (
     Q : out STD_LOGIC_VECTOR ( 5 downto 0 );
@@ -235,8 +233,6 @@ entity base_soc_rst_mig_7series_0_83M_0_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_upcnt_n : entity is "upcnt_n";
 end base_soc_rst_mig_7series_0_83M_0_upcnt_n;
 
 architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_upcnt_n is
@@ -397,17 +393,15 @@ entity base_soc_rst_mig_7series_0_83M_0_lpf is
     lpf_int : out STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC;
     dcm_locked : in STD_LOGIC;
-    ext_reset_in : in STD_LOGIC;
+    aux_reset_in : in STD_LOGIC;
     mb_debug_sys_rst : in STD_LOGIC;
-    aux_reset_in : in STD_LOGIC
+    ext_reset_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_lpf : entity is "lpf";
 end base_soc_rst_mig_7series_0_83M_0_lpf;
 
 architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_lpf is
-  signal \ACTIVE_HIGH_EXT.ACT_HI_EXT_n_0\ : STD_LOGIC;
   signal \ACTIVE_LOW_AUX.ACT_LO_AUX_n_0\ : STD_LOGIC;
+  signal \ACTIVE_LOW_EXT.ACT_LO_EXT_n_0\ : STD_LOGIC;
   signal Q : STD_LOGIC;
   signal asr_lpf : STD_LOGIC_VECTOR ( 0 to 0 );
   signal lpf_asr : STD_LOGIC;
@@ -424,17 +418,7 @@ architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_lpf is
   attribute srl_name : string;
   attribute srl_name of POR_SRL_I : label is "U0/\EXT_LPF/POR_SRL_I ";
 begin
-\ACTIVE_HIGH_EXT.ACT_HI_EXT\: entity work.base_soc_rst_mig_7series_0_83M_0_cdc_sync
-     port map (
-      ext_reset_in => ext_reset_in,
-      lpf_exr => lpf_exr,
-      lpf_exr_reg => \ACTIVE_HIGH_EXT.ACT_HI_EXT_n_0\,
-      mb_debug_sys_rst => mb_debug_sys_rst,
-      p_3_out(2 downto 0) => p_3_out(2 downto 0),
-      scndry_out => p_3_out(3),
-      slowest_sync_clk => slowest_sync_clk
-    );
-\ACTIVE_LOW_AUX.ACT_LO_AUX\: entity work.base_soc_rst_mig_7series_0_83M_0_cdc_sync_0
+\ACTIVE_LOW_AUX.ACT_LO_AUX\: entity work.base_soc_rst_mig_7series_0_83M_0_cdc_sync
      port map (
       asr_lpf(0) => asr_lpf(0),
       aux_reset_in => aux_reset_in,
@@ -443,6 +427,16 @@ begin
       p_1_in => p_1_in,
       p_2_in => p_2_in,
       scndry_out => p_3_in1_in,
+      slowest_sync_clk => slowest_sync_clk
+    );
+\ACTIVE_LOW_EXT.ACT_LO_EXT\: entity work.base_soc_rst_mig_7series_0_83M_0_cdc_sync_0
+     port map (
+      ext_reset_in => ext_reset_in,
+      lpf_exr => lpf_exr,
+      lpf_exr_reg => \ACTIVE_LOW_EXT.ACT_LO_EXT_n_0\,
+      mb_debug_sys_rst => mb_debug_sys_rst,
+      p_3_out(2 downto 0) => p_3_out(2 downto 0),
+      scndry_out => p_3_out(3),
       slowest_sync_clk => slowest_sync_clk
     );
 \AUX_LPF[1].asr_lpf_reg[1]\: unisim.vcomponents.FDRE
@@ -543,7 +537,7 @@ lpf_exr_reg: unisim.vcomponents.FDRE
         port map (
       C => slowest_sync_clk,
       CE => '1',
-      D => \ACTIVE_HIGH_EXT.ACT_HI_EXT_n_0\,
+      D => \ACTIVE_LOW_EXT.ACT_LO_EXT_n_0\,
       Q => lpf_exr,
       R => '0'
     );
@@ -584,8 +578,6 @@ entity base_soc_rst_mig_7series_0_83M_0_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_sequence_psr : entity is "sequence_psr";
 end base_soc_rst_mig_7series_0_83M_0_sequence_psr;
 
 architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_sequence_psr is
@@ -911,7 +903,7 @@ entity base_soc_rst_mig_7series_0_83M_0_proc_sys_reset is
   attribute C_AUX_RST_WIDTH : integer;
   attribute C_AUX_RST_WIDTH of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is 4;
   attribute C_EXT_RESET_HIGH : string;
-  attribute C_EXT_RESET_HIGH of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is "1'b1";
+  attribute C_EXT_RESET_HIGH of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is "1'b0";
   attribute C_EXT_RST_WIDTH : integer;
   attribute C_EXT_RST_WIDTH of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is 4;
   attribute C_FAMILY : string;
@@ -924,8 +916,6 @@ entity base_soc_rst_mig_7series_0_83M_0_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset : entity is "proc_sys_reset";
 end base_soc_rst_mig_7series_0_83M_0_proc_sys_reset;
 
 architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0_proc_sys_reset is
@@ -1036,7 +1026,7 @@ entity base_soc_rst_mig_7series_0_83M_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of base_soc_rst_mig_7series_0_83M_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of base_soc_rst_mig_7series_0_83M_0 : entity is "base_soc_rst_mig_7series_0_83M_0,proc_sys_reset,{}";
+  attribute CHECK_LICENSE_TYPE of base_soc_rst_mig_7series_0_83M_0 : entity is "base_soc_rst_clk_wiz_1_100M_0,proc_sys_reset,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_soc_rst_mig_7series_0_83M_0 : entity is "yes";
   attribute x_core_info : string;
@@ -1049,7 +1039,7 @@ architecture STRUCTURE of base_soc_rst_mig_7series_0_83M_0 is
   attribute C_AUX_RST_WIDTH : integer;
   attribute C_AUX_RST_WIDTH of U0 : label is 4;
   attribute C_EXT_RESET_HIGH : string;
-  attribute C_EXT_RESET_HIGH of U0 : label is "1'b1";
+  attribute C_EXT_RESET_HIGH of U0 : label is "1'b0";
   attribute C_EXT_RST_WIDTH : integer;
   attribute C_EXT_RST_WIDTH of U0 : label is 4;
   attribute C_FAMILY : string;

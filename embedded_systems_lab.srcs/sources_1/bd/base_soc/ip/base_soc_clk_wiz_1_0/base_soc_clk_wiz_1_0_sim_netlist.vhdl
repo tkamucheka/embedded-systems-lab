@@ -1,10 +1,10 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Fri Nov  5 03:04:37 2021
--- Host        : primus running 64-bit Ubuntu 21.10
--- Command     : write_vhdl -force -mode funcsim -rename_top base_soc_clk_wiz_1_0 -prefix
---               base_soc_clk_wiz_1_0_ base_soc_clk_wiz_1_0_sim_netlist.vhdl
+-- Date        : Thu Dec  2 03:17:58 2021
+-- Host        : Primus running 64-bit Ubuntu 21.10
+-- Command     : write_vhdl -force -mode funcsim
+--               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_clk_wiz_1_0/base_soc_clk_wiz_1_0_sim_netlist.vhdl
 -- Design      : base_soc_clk_wiz_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,17 +17,17 @@ use UNISIM.VCOMPONENTS.ALL;
 entity base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz is
   port (
     clk_out1 : out STD_LOGIC;
-    clk_out2 : out STD_LOGIC;
     resetn : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz : entity is "base_soc_clk_wiz_1_0_clk_wiz";
 end base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz;
 
 architecture STRUCTURE of base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz is
   signal clk_in1_base_soc_clk_wiz_1_0 : STD_LOGIC;
   signal clk_out1_base_soc_clk_wiz_1_0 : STD_LOGIC;
-  signal clk_out2_base_soc_clk_wiz_1_0 : STD_LOGIC;
   signal clkfbout_base_soc_clk_wiz_1_0 : STD_LOGIC;
   signal clkfbout_buf_base_soc_clk_wiz_1_0 : STD_LOGIC;
   signal reset_high : STD_LOGIC;
@@ -35,6 +35,7 @@ architecture STRUCTURE of base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz is
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
+  signal NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
@@ -56,7 +57,6 @@ architecture STRUCTURE of base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz is
   attribute IFD_DELAY_VALUE : string;
   attribute IFD_DELAY_VALUE of clkin1_ibufg : label is "AUTO";
   attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of clkout2_buf : label is "PRIMITIVE";
   attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
 begin
 clkf_buf: unisim.vcomponents.BUFG
@@ -77,11 +77,6 @@ clkout1_buf: unisim.vcomponents.BUFG
       I => clk_out1_base_soc_clk_wiz_1_0,
       O => clk_out1
     );
-clkout2_buf: unisim.vcomponents.BUFG
-     port map (
-      I => clk_out2_base_soc_clk_wiz_1_0,
-      O => clk_out2
-    );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
@@ -90,11 +85,11 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 5.000000,
+      CLKOUT0_DIVIDE_F => 6.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 6,
+      CLKOUT1_DIVIDE => 1,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT1_USE_FINE_PS => false,
@@ -144,7 +139,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
       CLKOUT0 => clk_out1_base_soc_clk_wiz_1_0,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => clk_out2_base_soc_clk_wiz_1_0,
+      CLKOUT1 => NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
       CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
       CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
@@ -184,7 +179,6 @@ use UNISIM.VCOMPONENTS.ALL;
 entity base_soc_clk_wiz_1_0 is
   port (
     clk_out1 : out STD_LOGIC;
-    clk_out2 : out STD_LOGIC;
     resetn : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
@@ -199,7 +193,6 @@ inst: entity work.base_soc_clk_wiz_1_0_base_soc_clk_wiz_1_0_clk_wiz
      port map (
       clk_in1 => clk_in1,
       clk_out1 => clk_out1,
-      clk_out2 => clk_out2,
       locked => locked,
       resetn => resetn
     );

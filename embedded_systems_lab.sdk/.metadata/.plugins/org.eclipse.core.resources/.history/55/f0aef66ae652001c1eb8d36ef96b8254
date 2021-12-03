@@ -1,0 +1,14 @@
+/*
+ * main.c
+ *
+ *  Created on: Dec 1, 2021
+ *      Author: tendayi
+ */
+
+
+#include "xil_printf.h"
+
+int main(void) {
+	xil_printf("hello world\r\n");
+	return 0;
+}

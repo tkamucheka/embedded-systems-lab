@@ -1,0 +1,83 @@
+/*
+ * main.c
+ *
+ *  Created on: Dec 1, 2021
+ *      Author: tendayi
+ */
+
+
+/* FreeRTOS includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "semphr.h"
+/* Xilinx includes. */
+#include "xil_printf.h"
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xintc.h"
+/* Other includes */
+#include "artyBotLib.h"
+#include "PmodMAXSONAR.h"
+
+#ifdef __MICROBLAZE__
+#define CLK_FREQ XPAR_CPU_M_AXI_DP_FREQ_HZ
+#else
+#define CLK_FREQ 83333333 // FCLK0 frequency not found in xparameters.h
+#endif
+
+// Defined variables found in files: xparameters.h
+#define PMOD_SONAR0_BASEADDR XPAR_PMOD_DUAL_MAXSONAR_0_SONAR0_BASEADDR
+#define PMOD_SONAR1_BASEADDR XPAR_PMOD_DUAL_MAXSONAR_0_SONAR1_BASEADDR
+
+// Defined variables found in files: xintc.h, xparameters.h
+#define INTC_DEVICE_ID XPAR_INTC_0_DEVICE_ID
+#define INTC_DEVICE_INT_ID XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_0_IP2INTC_IRPT_INTR
+
+// Function prototypes
+int isBlocked();
+void InterruptHandler(void *CallbackRef);
+
+// Task prototypes
+static void prvSupervisorTask(void *pvParameters);
+static void prvIdleTask(void *pvParameters);
+static void prvDriveTask(void *pvParameters);
+static void prvNavigateTask(void *pvParameters);
+
+// Task handlers
+static TaskHandle_t xSupervisorTask;
+static TaskHandle_t xIdleTask;
+static TaskHandle_t xDriveTask;
+static TaskHandle_t xNavigateTask;
+
+// Instance of the interrupt controller
+static XIntc InterruptController;
+int interrupt_occured = FALSE;
+
+// Sonar instances
+PmodMAXSONAR leftSonar;
+PmodMAXSONAR rightSonar;
+int is_blocked = FALSE;
+
+// GPIO
+XGpio gpio0;
+#define LED_CHANNEL 1
+#define BTN_CHANNEL 2
+
+// PMOD LS1
+XGpio PMOD_LS1;
+
+// Car states
+typedef enum
+{
+  IDLE,
+  DRIVE,
+  NAVIGATE
+} State;
+
+State state = IDLE; // Shared resource. Mutex driven.
+SemaphoreHandle_t state_mutex;
+
+int main(void) {
+	xil_printf("hello world3\r\n");
+	return 0;
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>ArtyBot_example0</name>
-	<comment></comment>
+	<comment>Created by SDK v2016.4. ArtyBot_freertos823_bsp - microblaze_0</comment>
 	<projects>
 		<project>ArtyBot_freertos823_bsp</project>
 	</projects>

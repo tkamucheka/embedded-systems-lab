@@ -136,11 +136,11 @@ void driveForward(double distance)
  * Description:
  *       Drive backward by given distance (cm), then come to complete stop
  */
-//void driveBackward(double distance)
-//{
-//  driveBackwardContinuous(distance);
-//  delayUntilStop();
-//}
+void driveBackward(double distance)
+{
+  driveBackwardContinuous(distance);
+  delayUntilStop();
+}
 
 /*
  * void turnLeft(int degrees)
@@ -155,11 +155,11 @@ void driveForward(double distance)
  *       Turn left about the center by given angle from forward, then come to
  *       complete stop
  */
-//void turnLeft(int degrees)
-//{
-//  turnLeftContinuous(degrees);
-//  delayUntilStop();
-//}
+void turnLeft(int degrees)
+{
+  turnLeftContinuous(degrees);
+  delayUntilStop();
+}
 
 /*
  * void turnRight(int degrees)
@@ -214,11 +214,11 @@ void driveForwardContinuous(double distance)
  *       Repeated calls to this function given short distances will allow
  *       processing during apparent continuous driving
  */
-//void driveBackwardContinuous(double distance)
-//{
-//  setDirBackward();
-//  drive(distance);
-//}
+void driveBackwardContinuous(double distance)
+{
+  setDirBackward();
+  drive(distance);
+}
 
 /*
  * void turnLeftContinuous(int degrees)
@@ -235,12 +235,12 @@ void driveForwardContinuous(double distance)
  *       Repeated calls to this function given small angles will allow
  *       processing during apparent continuous turning
  */
-//void turnLeftContinuous(int degrees)
-//{
-//  double arclength = FULL_TURN_ARCLENGTH * (degrees / 360.0);
-//  setDirLeft();
-//  turn(arclength);
-//}
+void turnLeftContinuous(int degrees)
+{
+  double arclength = FULL_TURN_ARCLENGTH * (degrees / 360.0);
+  setDirLeft();
+  turn(arclength);
+}
 
 /*
  * void turnRightContinuous(int degrees)
@@ -278,13 +278,13 @@ void turnRightContinuous(int degrees)
  *       Turn left about left wheel by given angle from forward, then come to
  *       complete stop
  */
-//void swingTurnLeft(int degrees)
-//{
-//  double arclength = FULL_SWING_TURN_ARCLENGTH * (degrees / 360.0);
-//  setDirLeft();
-//  swingTurn(arclength, 0);
-//  delayUntilStop();
-//}
+void swingTurnLeft(int degrees)
+{
+  double arclength = FULL_SWING_TURN_ARCLENGTH * (degrees / 360.0);
+  setDirLeft();
+  swingTurn(arclength, 0);
+  delayUntilStop();
+}
 
 /*
  * void swingTurnRight(int degrees)
@@ -299,13 +299,13 @@ void turnRightContinuous(int degrees)
  *       Turn right about right wheel by given angle from forward, then come to
  *       complete stop
  */
-//void swingTurnRight(int degrees)
-//{
-//  double arclength = FULL_SWING_TURN_ARCLENGTH * (degrees / 360.0);
-//  setDirRight();
-//  swingTurn(arclength, 1);
-//  delayUntilStop();
-//}
+void swingTurnRight(int degrees)
+{
+  double arclength = FULL_SWING_TURN_ARCLENGTH * (degrees / 360.0);
+  setDirRight();
+  swingTurn(arclength, 1);
+  delayUntilStop();
+}
 
 /*
  * void setDirForward()
@@ -544,44 +544,44 @@ void turn(double arclength)
  *       Drive one motor (determined by dir parameter) the given arclength using
  *       speed control (motor will turn at constant rate throughout the turn)
  */
-//void swingTurn(double arclength, int dir)
-//{
-//  int16_t dist_converted = (int16_t)(arclength * 9.4); // cm to sens edges
-//
-//  int motor_speed[2];
-//  // measureSpeed(motor_speed);
-//  MotorFeedback_getSpeeds(motorFB, motor_speed);
-//
-//  int16_t motor_pos[2];
-//  // getMotorPositions(MOTORFB_BASEADDR, motor_pos);
-//  MotorFeedback_getPositions(motorFB, motor_pos);
-//
-//  double duty_cycle[2];
-//  getSpeedCorrection(40, motor_speed, duty_cycle);
-//
-//  PWM_Enable(PWM_BASEADDR);
-//
-//  while (motor_pos[0] < dist_converted && motor_pos[1] < dist_converted)
-//  {
-//    usleep(SAMPLE_PER);
-//    // measureSpeed(motor_speed);
-//    MotorFeedback_getSpeeds(motorFB, motor_speed);
-//    getSpeedCorrection(40, motor_speed, duty_cycle);
-//    if (dir)
-//    {
-//      PWM_Set_Duty(PWM_BASEADDR, (u32)(duty_cycle[0] * PWM_PERIOD), PWM_M1);
-//      PWM_Set_Duty(PWM_BASEADDR, (u32)0, PWM_M2);
-//    }
-//    else
-//    {
-//      PWM_Set_Duty(PWM_BASEADDR, (u32)0, PWM_M1);
-//      PWM_Set_Duty(PWM_BASEADDR, (u32)(duty_cycle[1] * PWM_PERIOD), PWM_M2);
-//    }
-//    // getMotorPositions(MOTORFB_BASEADDR, motor_pos);
-//    MotorFeedback_getPositions(motorFB, motor_pos);
-//  }
-//  PWM_Disable(PWM_BASEADDR);
-//}
+void swingTurn(double arclength, int dir)
+{
+  int16_t dist_converted = (int16_t)(arclength * 9.4); // cm to sens edges
+
+  int motor_speed[2];
+  // measureSpeed(motor_speed);
+  MotorFeedback_getSpeeds(motorFB, motor_speed);
+
+  int16_t motor_pos[2];
+  // getMotorPositions(MOTORFB_BASEADDR, motor_pos);
+  MotorFeedback_getPositions(motorFB, motor_pos);
+
+  double duty_cycle[2];
+  getSpeedCorrection(40, motor_speed, duty_cycle);
+
+  PWM_Enable(PWM_BASEADDR);
+
+  while (motor_pos[0] < dist_converted && motor_pos[1] < dist_converted)
+  {
+    usleep(SAMPLE_PER);
+    // measureSpeed(motor_speed);
+    MotorFeedback_getSpeeds(motorFB, motor_speed);
+    getSpeedCorrection(40, motor_speed, duty_cycle);
+    if (dir)
+    {
+      PWM_Set_Duty(PWM_BASEADDR, (u32)(duty_cycle[0] * PWM_PERIOD), PWM_M1);
+      PWM_Set_Duty(PWM_BASEADDR, (u32)0, PWM_M2);
+    }
+    else
+    {
+      PWM_Set_Duty(PWM_BASEADDR, (u32)0, PWM_M1);
+      PWM_Set_Duty(PWM_BASEADDR, (u32)(duty_cycle[1] * PWM_PERIOD), PWM_M2);
+    }
+    // getMotorPositions(MOTORFB_BASEADDR, motor_pos);
+    MotorFeedback_getPositions(motorFB, motor_pos);
+  }
+  PWM_Disable(PWM_BASEADDR);
+}
 
 /*
  * void delayUntilStop()
