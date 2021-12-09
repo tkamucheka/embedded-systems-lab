@@ -36,8 +36,9 @@
 
 // Function prototypes
 static void prvSetupHardware(void);
+void prvPmodLS1_ISR(void *ISRParameter);
+void prvPmodLS1_InterruptHandler(void *CallbackRef);
 int isBlocked();
-void InterruptHandler(void *CallbackRef);
 
 // Task prototypes
 static void prvSupervisorTask(void *pvParameters);
@@ -109,10 +110,16 @@ int main(void)
   XIntc_Initialize(&InterruptController, INTC_DEVICE_ID);
   XIntc_SelfTest(&InterruptController);
 
-  // Connect to the interrupt controller
-  XIntc_Connect(&InterruptController, INTC_DEVICE_INT_ID, (XInterruptHandler)InterruptHandler, (void *)0);
-  XIntc_Start(&InterruptController, XIN_REAL_MODE);
-  XIntc_Enable(&InterruptController, INTC_DEVICE_INT_ID);
+  // Connect to the Interrupt Controller
+  /* Install the tick interrupt handler as the timer ISR.
+		*NOTE* The xPortInstallInterruptHandler() API function must be used for
+		this purpose. */
+  xStatus = xPortInstallInterruptHandler(XPAR_INTC_0_GPIO_2_VEC_ID, prvPmodLS1_ISR, NULL);
+  /* Enable the timer interrupt in the interrupt controller.
+		*NOTE* The vPortEnableInterrupt() API function must be used for this
+		purpose. */
+  vPortEnableInterrupt(XPAR_INTC_0_GPIO_2_VEC_ID);
+
   Xil_ExceptionInit();
   Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XIntc_InterruptHandler, &InterruptController);
   Xil_ExceptionEnable();
@@ -175,17 +182,21 @@ int isBlocked()
   return is_blocked;
 }
 
-// "Routine method" that executes when an interrupt occurred
-void InterruptHandler(void *CallbackRef)
+void prvPmodLS1_ISR(void *ISRparameter)
 {
+  prvPmodLS1_InterruptHandler();
+}
+
+// "Routine method" that executes when an interrupt occurred
+void prvPmodLS1_InterruptHandler(void *CallbackRef)
+{
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
   // If-statement that executes when the value of the PMOD LS1 not zero
   // Don't care which sensor picked up the signal here. However,
   // this would be a good place to find out which side/sensor picked up the
   // signal
-
-  xil_printf("Interrupt occurred.\n");
-
-  if (XGpio_DiscreteRead(&PMOD_LS1, /* bottom row */ 2))
+  if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1))
   {
     // Print statement that tracks interrupts occurred
     xil_printf("Interrupt occurred.\n");
@@ -199,7 +210,15 @@ void InterruptHandler(void *CallbackRef)
     xTaskResumeAll(); // Resume tasks
   }
   // Clears the value of the input button back to the masked value (0x1)
-  XGpio_InterruptClear(&PMOD_LS1, /* bottom row */ 2);
+  XGpio_InterruptClear(&PMOD_LS1, /* bottom row */ 1);
+
+  /* Call portYIELD_FROM_ISR(), passing in xHigherPriorityTaskWoken.  If
+    xHigherPriorityTaskWoken was set to pdTRUE inside xQueueSendFromISR(), then
+    calling portYIELD_FROM_ISR() here will cause the ISR
+    to return directly to the newly unblocked task.  If xHigherPriorityTaskWoken
+    has retained its initialised value of pdFALSE, then calling
+    portYIELD_FROM_ISR() here will have no effect. */
+  portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 // Supervisor task
