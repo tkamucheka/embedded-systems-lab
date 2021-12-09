@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
 -- Date        : Wed Dec  8 19:14:56 2021
 -- Host        : Primus running 64-bit Ubuntu 21.10
--- Command     : write_vhdl -force -mode funcsim
---               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_xbar_3/base_soc_xbar_3_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_soc_xbar_3 -prefix
+--               base_soc_xbar_3_ base_soc_xbar_3_sim_netlist.vhdl
 -- Design      : base_soc_xbar_3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -74,8 +74,6 @@ entity base_soc_xbar_3_axi_crossbar_v2_1_12_addr_arbiter_sasd is
     mi_bvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     mi_wready : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_crossbar_v2_1_12_addr_arbiter_sasd : entity is "axi_crossbar_v2_1_12_addr_arbiter_sasd";
 end base_soc_xbar_3_axi_crossbar_v2_1_12_addr_arbiter_sasd;
 
 architecture STRUCTURE of base_soc_xbar_3_axi_crossbar_v2_1_12_addr_arbiter_sasd is
@@ -1676,8 +1674,6 @@ entity base_soc_xbar_3_axi_crossbar_v2_1_12_decerr_slave is
     \m_atarget_hot_reg[3]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     aresetn_d : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_crossbar_v2_1_12_decerr_slave : entity is "axi_crossbar_v2_1_12_decerr_slave";
 end base_soc_xbar_3_axi_crossbar_v2_1_12_decerr_slave;
 
 architecture STRUCTURE of base_soc_xbar_3_axi_crossbar_v2_1_12_decerr_slave is
@@ -1832,8 +1828,6 @@ entity base_soc_xbar_3_axi_crossbar_v2_1_12_splitter is
     \gen_axilite.s_axi_awready_i_reg_0\ : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_crossbar_v2_1_12_splitter : entity is "axi_crossbar_v2_1_12_splitter";
 end base_soc_xbar_3_axi_crossbar_v2_1_12_splitter;
 
 architecture STRUCTURE of base_soc_xbar_3_axi_crossbar_v2_1_12_splitter is
@@ -2015,8 +2009,6 @@ entity base_soc_xbar_3_axi_register_slice_v2_1_11_axic_register_slice is
     SR : in STD_LOGIC_VECTOR ( 0 to 0 );
     E : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_register_slice_v2_1_11_axic_register_slice : entity is "axi_register_slice_v2_1_11_axic_register_slice";
 end base_soc_xbar_3_axi_register_slice_v2_1_11_axic_register_slice;
 
 architecture STRUCTURE of base_soc_xbar_3_axi_register_slice_v2_1_11_axic_register_slice is
@@ -3677,8 +3669,6 @@ entity base_soc_xbar_3_axi_crossbar_v2_1_12_crossbar_sasd is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_awvalid : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_crossbar_v2_1_12_crossbar_sasd : entity is "axi_crossbar_v2_1_12_crossbar_sasd";
 end base_soc_xbar_3_axi_crossbar_v2_1_12_crossbar_sasd;
 
 architecture STRUCTURE of base_soc_xbar_3_axi_crossbar_v2_1_12_crossbar_sasd is
@@ -4116,8 +4106,6 @@ entity base_soc_xbar_3_axi_crossbar_v2_1_12_axi_crossbar is
   attribute C_S_AXI_WRITE_ACCEPTANCE of base_soc_xbar_3_axi_crossbar_v2_1_12_axi_crossbar : entity is 1;
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of base_soc_xbar_3_axi_crossbar_v2_1_12_axi_crossbar : entity is "yes";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_soc_xbar_3_axi_crossbar_v2_1_12_axi_crossbar : entity is "axi_crossbar_v2_1_12_axi_crossbar";
   attribute P_ADDR_DECODE : integer;
   attribute P_ADDR_DECODE of base_soc_xbar_3_axi_crossbar_v2_1_12_axi_crossbar : entity is 1;
   attribute P_AXI3 : integer;

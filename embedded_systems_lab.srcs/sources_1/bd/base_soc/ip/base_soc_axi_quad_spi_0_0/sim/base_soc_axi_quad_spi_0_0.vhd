@@ -300,7 +300,7 @@ BEGIN
       C_SPI_MODE => 2,
       C_USE_STARTUP => 0,
       C_USE_STARTUP_EXT => 0,
-      C_SPI_MEMORY => 2,
+      C_SPI_MEMORY => 3,
       C_S_AXI_ADDR_WIDTH => 7,
       C_S_AXI_DATA_WIDTH => 32,
       C_S_AXI4_ADDR_WIDTH => 24,

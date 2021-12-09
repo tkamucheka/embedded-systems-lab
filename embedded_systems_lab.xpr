@@ -60,86 +60,68 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_2/base_soc_xbar_2.xci">
-          <Proxy FileSetName="base_soc_xbar_2"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_3/base_soc_xbar_3.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_Pmod_Dual_MAXSONAR_0_2/base_soc_Pmod_Dual_MAXSONAR_0_2.xci">
+          <Proxy FileSetName="base_soc_Pmod_Dual_MAXSONAR_0_2"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_axi_periph_0/base_soc_microblaze_0_axi_periph_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_mdm_1_0/base_soc_mdm_1_0.xci">
-          <Proxy FileSetName="base_soc_mdm_1_0"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_pmod_bridge_1_0/base_soc_pmod_bridge_1_0.xci">
+          <Proxy FileSetName="base_soc_pmod_bridge_1_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_interconnect_0_0/base_soc_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_ethernetlite_0_0/base_soc_axi_ethernetlite_0_0.xci">
-          <Proxy FileSetName="base_soc_axi_ethernetlite_0_0"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_dlmb_bram_if_cntlr_0/base_soc_dlmb_bram_if_cntlr_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_pmod_bridge_2_0/base_soc_pmod_bridge_2_0.xci">
+          <Proxy FileSetName="base_soc_pmod_bridge_2_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_mig_7series_0_0/base_soc_mig_7series_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_rst_mig_7series_0_83M_0/base_soc_rst_mig_7series_0_83M_0.xci">
-          <Proxy FileSetName="base_soc_rst_mig_7series_0_83M_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_gpio_1_0/base_soc_axi_gpio_1_0.xci">
-          <Proxy FileSetName="base_soc_axi_gpio_1_0"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_1/base_soc_xbar_1.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_gpio_1_0/base_soc_axi_gpio_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hdl/base_soc.v"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_dlmb_v10_0/base_soc_dlmb_v10_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_interconnect_0_1/base_soc_axi_interconnect_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_ethernetlite_0_0/base_soc_axi_ethernetlite_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_mdm_1_0/base_soc_mdm_1_0.xci">
+          <Proxy FileSetName="base_soc_mdm_1_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_uartlite_0_0/base_soc_axi_uartlite_0_0.xci">
           <Proxy FileSetName="base_soc_axi_uartlite_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_3/base_soc_xbar_3.xci">
-          <Proxy FileSetName="base_soc_xbar_3"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hdl/base_soc.v"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_pmod_bridge_1_0/base_soc_pmod_bridge_1_0.xci">
-          <Proxy FileSetName="base_soc_pmod_bridge_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_pmod_bridge_2_0/base_soc_pmod_bridge_2_0.xci">
-          <Proxy FileSetName="base_soc_pmod_bridge_2_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_Pmod_Dual_MAXSONAR_0_2/base_soc_Pmod_Dual_MAXSONAR_0_2.xci">
-          <Proxy FileSetName="base_soc_Pmod_Dual_MAXSONAR_0_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_interconnect_0_1/base_soc_axi_interconnect_0_1.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_dlmb_v10_0/base_soc_dlmb_v10_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_dlmb_bram_if_cntlr_0/base_soc_dlmb_bram_if_cntlr_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_quad_spi_0_0/base_soc_axi_quad_spi_0_0.xci">
-          <Proxy FileSetName="base_soc_axi_quad_spi_0_0"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_axi_periph_0/base_soc_microblaze_0_axi_periph_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_rst_mig_7series_0_83M_0/base_soc_rst_mig_7series_0_83M_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_axi_intc_0/base_soc_microblaze_0_axi_intc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_clk_wiz_1_0/base_soc_clk_wiz_1_0.xci">
+          <Proxy FileSetName="base_soc_clk_wiz_1_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_0/base_soc_xbar_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_2/base_soc_xbar_2.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_gpio_0_0/base_soc_axi_gpio_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_quad_spi_0_0/base_soc_axi_quad_spi_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_interconnect_0_2/base_soc_axi_interconnect_0_2.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_timer_0_0/base_soc_axi_timer_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_pmod_bridge_0_1/base_soc_pmod_bridge_0_1.xci">
           <Proxy FileSetName="base_soc_pmod_bridge_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_gpio_2_0/base_soc_axi_gpio_2_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xlconcat_0_0/base_soc_xlconcat_0_0.xci">
+          <Proxy FileSetName="base_soc_xlconcat_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_Pmod_DHB1_0_0/base_soc_Pmod_DHB1_0_0.xci">
           <Proxy FileSetName="base_soc_Pmod_DHB1_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_ilmb_bram_if_cntlr_0/base_soc_ilmb_bram_if_cntlr_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xlconcat_0_0/base_soc_xlconcat_0_0.xci">
-          <Proxy FileSetName="base_soc_xlconcat_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_timer_0_0/base_soc_axi_timer_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_clk_wiz_1_0/base_soc_clk_wiz_1_0.xci">
-          <Proxy FileSetName="base_soc_clk_wiz_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_axi_intc_0/base_soc_microblaze_0_axi_intc_0.xci">
-          <Proxy FileSetName="base_soc_microblaze_0_axi_intc_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_gpio_2_0/base_soc_axi_gpio_2_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_axi_interconnect_0_2/base_soc_axi_interconnect_0_2.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_2/base_soc_microblaze_0_2.xci">
-          <Proxy FileSetName="base_soc_microblaze_0_2"/>
-        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_microblaze_0_2/base_soc_microblaze_0_2.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_ilmb_v10_0/base_soc_ilmb_v10_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_pc_1/base_soc_auto_pc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_us_1/base_soc_auto_us_1.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_xbar_1/base_soc_xbar_1.xci">
-          <Proxy FileSetName="base_soc_xbar_1"/>
-        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_ilmb_bram_if_cntlr_0/base_soc_ilmb_bram_if_cntlr_0.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_blk_mem_gen_0_0/base_soc_blk_mem_gen_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_pc_0/base_soc_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_mig_7series_0_1/base_soc_mig_7series_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_us_2/base_soc_auto_us_2.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_us_0/base_soc_auto_us_0.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_pc_2/base_soc_auto_pc_2.xci"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_us_2/base_soc_auto_us_2.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_us_1/base_soc_auto_us_1.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_pc_1/base_soc_auto_pc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="ip/base_soc_auto_pc_0/base_soc_auto_pc_0.xci"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hdl/base_soc.hwdef"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hw_handoff/base_soc.hwh"/>
+        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hw_handoff/base_soc_bd.tcl"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="base_soc_ooc.xdc"/>
         <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="base_soc.bmm"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hw_handoff/base_soc_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="base_soc.bd" FileRelPathName="hw_handoff/base_soc.hwh"/>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/base_soc/hdl/base_soc_wrapper.v">
         <FileInfo>
@@ -160,40 +142,40 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_axi_intc_0/lab3_microblaze_0_axi_intc_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_mdm_1_0/lab3_mdm_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_1/lab3_auto_ds_1.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_cc_1/lab3_auto_cc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_4/lab3_auto_ds_4.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_3/lab3_auto_ds_3.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_rst_clk_wiz_1_100M_0/lab3_rst_clk_wiz_1_100M_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_xbar_0/lab3_xbar_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_rst_mig_7series_0_83M_0/lab3_rst_mig_7series_0_83M_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_gpio_0_0/lab3_axi_gpio_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_0/lab3_auto_ds_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_cc_0/lab3_auto_cc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_2/lab3_auto_ds_2.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_5/lab3_auto_ds_5.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_clk_wiz_1_0/lab3_clk_wiz_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_lmb_bram_0/lab3_lmb_bram_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_dlmb_bram_if_cntlr_0/lab3_dlmb_bram_if_cntlr_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_dlmb_v10_0/lab3_dlmb_v10_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_axi_periph_0/lab3_microblaze_0_axi_periph_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_xlconcat_0/lab3_microblaze_0_xlconcat_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_clk_wiz_1_0/lab3_clk_wiz_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_gpio_0_0/lab3_axi_gpio_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_quad_spi_0_0/lab3_axi_quad_spi_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_0/lab3_auto_ds_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_uartlite_0_0/lab3_axi_uartlite_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_cc_0/lab3_auto_cc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_us_0/lab3_auto_us_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_2/lab3_auto_ds_2.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_1/lab3_auto_ds_1.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_5/lab3_auto_ds_5.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_4/lab3_auto_ds_4.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_timer_0_0/lab3_axi_timer_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_interconnect_0_1/lab3_axi_interconnect_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_xbar_2/lab3_xbar_2.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_gpio_1_0/lab3_axi_gpio_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_pc_0/lab3_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_cc_1/lab3_auto_cc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_ds_3/lab3_auto_ds_3.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_us_1/lab3_auto_us_1.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_rst_clk_wiz_1_100M_0/lab3_rst_clk_wiz_1_100M_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_ilmb_bram_if_cntlr_0/lab3_ilmb_bram_if_cntlr_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_ilmb_v10_0/lab3_ilmb_v10_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_0/lab3_microblaze_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_lmb_bram_0/lab3_lmb_bram_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_dlmb_bram_if_cntlr_0/lab3_dlmb_bram_if_cntlr_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_dlmb_v10_0/lab3_dlmb_v10_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_axi_intc_0/lab3_microblaze_0_axi_intc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_xbar_0/lab3_xbar_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_interconnect_0_0/lab3_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_timer_0_0/lab3_axi_timer_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_rst_mig_7series_0_83M_0/lab3_rst_mig_7series_0_83M_0.xci"/>
         <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_mig_7series_0_0/lab3_mig_7series_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_interconnect_0_1/lab3_axi_interconnect_0_1.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_quad_spi_0_0/lab3_axi_quad_spi_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_xbar_2/lab3_xbar_2.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_uartlite_0_0/lab3_axi_uartlite_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_axi_gpio_1_0/lab3_axi_gpio_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_us_0/lab3_auto_us_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_pc_0/lab3_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_microblaze_0_xlconcat_0/lab3_microblaze_0_xlconcat_0.xci"/>
-        <CompFileExtendedInfo CompFileName="lab3.bd" FileRelPathName="ip/lab3_auto_us_1/lab3_auto_us_1.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/lab3/ip/lab3_mig_7series_0_0/board.prj">
         <FileInfo>
@@ -207,27 +189,27 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hdl/Pmod_DHB1.hwdef"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_auto_pc_1/Pmod_DHB1_auto_pc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hw_handoff/Pmod_DHB1.hwh"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hw_handoff/Pmod_DHB1_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlconcat_0_1/Pmod_DHB1_xlconcat_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_axi_interconnect_0_0/Pmod_DHB1_axi_interconnect_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlconstant_0_0/Pmod_DHB1_xlconstant_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hdl/Pmod_DHB1.v"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_auto_pc_0/Pmod_DHB1_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xbar_0/Pmod_DHB1_xbar_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="Pmod_DHB1_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_axi_gpio_0_0/Pmod_DHB1_axi_gpio_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_PWM_0_0/Pmod_DHB1_PWM_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_1/Pmod_DHB1_xlslice_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_2/Pmod_DHB1_xlslice_0_2.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlconcat_0_0/Pmod_DHB1_xlconcat_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_MotorFeedback_0_0/Pmod_DHB1_MotorFeedback_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_0/Pmod_DHB1_xlslice_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_1/Pmod_DHB1_xlslice_0_1.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_3/Pmod_DHB1_xlslice_0_3.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_axi_gpio_0_0/Pmod_DHB1_axi_gpio_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_PWM_0_0/Pmod_DHB1_PWM_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_2/Pmod_DHB1_xlslice_0_2.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_5/Pmod_DHB1_xlslice_0_5.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_auto_pc_1/Pmod_DHB1_auto_pc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hdl/Pmod_DHB1.hwdef"/>
         <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlslice_0_4/Pmod_DHB1_xlslice_0_4.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlconcat_0_1/Pmod_DHB1_xlconcat_0_1.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_auto_pc_0/Pmod_DHB1_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hdl/Pmod_DHB1.v"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_axi_interconnect_0_0/Pmod_DHB1_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xlconstant_0_0/Pmod_DHB1_xlconstant_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hw_handoff/Pmod_DHB1.hwh"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="Pmod_DHB1_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="hw_handoff/Pmod_DHB1_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="Pmod_DHB1.bd" FileRelPathName="ip/Pmod_DHB1_xbar_0/Pmod_DHB1_xbar_0.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/Pmod_Dual_MAXSONAR/Pmod_Dual_MAXSONAR.bd">
         <FileInfo>
@@ -239,19 +221,19 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlslice_0_0/Pmod_Dual_MAXSONAR_xlslice_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_PWM_Analyzer_1_0/Pmod_Dual_MAXSONAR_PWM_Analyzer_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hw_handoff/Pmod_Dual_MAXSONAR.hwh"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlslice_0_1/Pmod_Dual_MAXSONAR_xlslice_0_1.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hdl/Pmod_Dual_MAXSONAR.v"/>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlconstant_0_0/Pmod_Dual_MAXSONAR_xlconstant_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="Pmod_Dual_MAXSONAR_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hw_handoff/Pmod_Dual_MAXSONAR_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hw_handoff/Pmod_Dual_MAXSONAR.hwh"/>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_auto_pc_1/Pmod_Dual_MAXSONAR_auto_pc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hdl/Pmod_Dual_MAXSONAR.hwdef"/>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_PWM_Analyzer_0_0/Pmod_Dual_MAXSONAR_PWM_Analyzer_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlconstant_1_0/Pmod_Dual_MAXSONAR_xlconstant_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xbar_0/Pmod_Dual_MAXSONAR_xbar_0.xci"/>
         <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_axi_interconnect_0_0/Pmod_Dual_MAXSONAR_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlslice_0_1/Pmod_Dual_MAXSONAR_xlslice_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_PWM_Analyzer_1_0/Pmod_Dual_MAXSONAR_PWM_Analyzer_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hdl/Pmod_Dual_MAXSONAR.hwdef"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="hw_handoff/Pmod_Dual_MAXSONAR_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xlconstant_1_0/Pmod_Dual_MAXSONAR_xlconstant_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="Pmod_Dual_MAXSONAR_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="Pmod_Dual_MAXSONAR.bd" FileRelPathName="ip/Pmod_Dual_MAXSONAR_xbar_0/Pmod_Dual_MAXSONAR_xbar_0.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/new/Feedback_Selector.v">
         <FileInfo>
@@ -259,6 +241,16 @@
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/base_soc/ip/base_soc_mig_7series_0_1/board.prj">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/base_soc/ip/base_soc_mig_7series_0_2/board.prj">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
         </FileInfo>
       </File>
       <Config>
@@ -314,33 +306,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="base_soc_axi_gpio_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_axi_gpio_1_0">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_axi_gpio_1_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_axi_quad_spi_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_axi_quad_spi_0_0">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_axi_quad_spi_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_microblaze_0_axi_intc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_microblaze_0_axi_intc_0">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_microblaze_0_axi_intc_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="base_soc_mdm_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_mdm_1_0">
       <Config>
         <Option Name="TopModule" Val="base_soc_mdm_1_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_axi_ethernetlite_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_axi_ethernetlite_0_0">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_axi_ethernetlite_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -380,39 +348,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="base_soc_xbar_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_xbar_2">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_xbar_2"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_xbar_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_xbar_3">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_xbar_3"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="base_soc_clk_wiz_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_clk_wiz_1_0">
       <Config>
         <Option Name="TopModule" Val="base_soc_clk_wiz_1_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_microblaze_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_microblaze_0_2">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_microblaze_0_2"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_xbar_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_xbar_1">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_xbar_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="base_soc_rst_mig_7series_0_83M_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/base_soc_rst_mig_7series_0_83M_0">
-      <Config>
-        <Option Name="TopModule" Val="base_soc_rst_mig_7series_0_83M_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -455,39 +393,7 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="base_soc_axi_gpio_1_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_axi_gpio_1_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_gpio_1_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_axi_gpio_1_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_axi_quad_spi_0_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_axi_quad_spi_0_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_quad_spi_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_axi_quad_spi_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_microblaze_0_axi_intc_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_microblaze_0_axi_intc_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_microblaze_0_axi_intc_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_microblaze_0_axi_intc_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="base_soc_mdm_1_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_mdm_1_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_mdm_1_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_mdm_1_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_axi_ethernetlite_0_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_axi_ethernetlite_0_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_ethernetlite_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_axi_ethernetlite_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
@@ -543,57 +449,9 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="base_soc_xbar_2_synth_1" Type="Ft3:Synth" SrcSet="base_soc_xbar_2" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_xbar_2_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_xbar_3_synth_1" Type="Ft3:Synth" SrcSet="base_soc_xbar_3" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_3" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_xbar_3_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="base_soc_clk_wiz_1_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_clk_wiz_1_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_clk_wiz_1_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_clk_wiz_1_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_microblaze_0_2_synth_1" Type="Ft3:Synth" SrcSet="base_soc_microblaze_0_2" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_microblaze_0_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_microblaze_0_2_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_xbar_1_synth_1" Type="Ft3:Synth" SrcSet="base_soc_xbar_1" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_xbar_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_rst_mig_7series_0_83M_0_synth_1" Type="Ft3:Synth" SrcSet="base_soc_rst_mig_7series_0_83M_0" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_rst_mig_7series_0_83M_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/base_soc_rst_mig_7series_0_83M_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -632,67 +490,7 @@
       </Strategy>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="base_soc_axi_gpio_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_gpio_1_0" Description="Default settings for Implementation." SynthRun="base_soc_axi_gpio_1_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_axi_quad_spi_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_quad_spi_0_0" Description="Default settings for Implementation." SynthRun="base_soc_axi_quad_spi_0_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_microblaze_0_axi_intc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_microblaze_0_axi_intc_0" Description="Default settings for Implementation." SynthRun="base_soc_microblaze_0_axi_intc_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="base_soc_mdm_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_mdm_1_0" Description="Default settings for Implementation." SynthRun="base_soc_mdm_1_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_axi_ethernetlite_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_axi_ethernetlite_0_0" Description="Default settings for Implementation." SynthRun="base_soc_axi_ethernetlite_0_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
@@ -797,92 +595,9 @@
       </Strategy>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="base_soc_xbar_2_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_2" Description="Default settings for Implementation." SynthRun="base_soc_xbar_2_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_xbar_3_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_3" Description="Default settings for Implementation." SynthRun="base_soc_xbar_3_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="base_soc_clk_wiz_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_clk_wiz_1_0" Description="Default settings for Implementation." SynthRun="base_soc_clk_wiz_1_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_microblaze_0_2_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_microblaze_0_2" Description="Default settings for Implementation." SynthRun="base_soc_microblaze_0_2_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_xbar_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_xbar_1" Description="Default settings for Implementation." SynthRun="base_soc_xbar_1_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="base_soc_rst_mig_7series_0_83M_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35ticsg324-1L" ConstrsSet="base_soc_rst_mig_7series_0_83M_0" Description="Default settings for Implementation." SynthRun="base_soc_rst_mig_7series_0_83M_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

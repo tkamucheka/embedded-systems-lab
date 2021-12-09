@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
 -- Date        : Tue Dec  7 23:07:15 2021
 -- Host        : Primus running 64-bit Ubuntu 21.10
--- Command     : write_vhdl -force -mode synth_stub
---               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_rst_mig_7series_0_83M_0/base_soc_rst_mig_7series_0_83M_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top base_soc_rst_mig_7series_0_83M_0 -prefix
+--               base_soc_rst_mig_7series_0_83M_0_ base_soc_rst_mig_7series_0_83M_0_stub.vhdl
 -- Design      : base_soc_rst_mig_7series_0_83M_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a35ticsg324-1L

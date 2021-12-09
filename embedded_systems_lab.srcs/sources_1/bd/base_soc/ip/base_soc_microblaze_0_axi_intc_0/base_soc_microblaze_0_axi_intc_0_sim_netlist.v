@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
 // Date        : Fri Nov  5 03:04:03 2021
 // Host        : primus running 64-bit Ubuntu 21.10
-// Command     : write_verilog -force -mode funcsim
-//               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_microblaze_0_axi_intc_0/base_soc_microblaze_0_axi_intc_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top base_soc_microblaze_0_axi_intc_0 -prefix
+//               base_soc_microblaze_0_axi_intc_0_ base_soc_microblaze_0_axi_intc_0_sim_netlist.v
 // Design      : base_soc_microblaze_0_axi_intc_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,150 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "base_soc_microblaze_0_axi_intc_0,axi_intc,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_intc,Vivado 2016.4" *) 
-(* NotValidForBitStream *)
-module base_soc_microblaze_0_axi_intc_0
-   (s_axi_aclk,
-    s_axi_aresetn,
-    s_axi_awaddr,
-    s_axi_awvalid,
-    s_axi_awready,
-    s_axi_wdata,
-    s_axi_wstrb,
-    s_axi_wvalid,
-    s_axi_wready,
-    s_axi_bresp,
-    s_axi_bvalid,
-    s_axi_bready,
-    s_axi_araddr,
-    s_axi_arvalid,
-    s_axi_arready,
-    s_axi_rdata,
-    s_axi_rresp,
-    s_axi_rvalid,
-    s_axi_rready,
-    intr,
-    processor_clk,
-    processor_rst,
-    irq,
-    processor_ack,
-    interrupt_address);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *) input s_axi_aclk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 s_resetn RST" *) input s_axi_aresetn;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWADDR" *) input [8:0]s_axi_awaddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWVALID" *) input s_axi_awvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWREADY" *) output s_axi_awready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WDATA" *) input [31:0]s_axi_wdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WSTRB" *) input [3:0]s_axi_wstrb;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WVALID" *) input s_axi_wvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WREADY" *) output s_axi_wready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BRESP" *) output [1:0]s_axi_bresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BVALID" *) output s_axi_bvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BREADY" *) input s_axi_bready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARADDR" *) input [8:0]s_axi_araddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARVALID" *) input s_axi_arvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARREADY" *) output s_axi_arready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RDATA" *) output [31:0]s_axi_rdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RRESP" *) output [1:0]s_axi_rresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RVALID" *) output s_axi_rvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RREADY" *) input s_axi_rready;
-  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 interrupt_input INTERRUPT" *) input [2:0]intr;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 proc_clock CLK" *) input processor_clk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 proc_reset RST" *) input processor_rst;
-  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt INTERRUPT" *) output irq;
-  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt ACK" *) input [1:0]processor_ack;
-  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt ADDRESS" *) output [31:0]interrupt_address;
-
-  wire [31:0]interrupt_address;
-  wire [2:0]intr;
-  wire irq;
-  wire [1:0]processor_ack;
-  wire processor_clk;
-  wire processor_rst;
-  wire s_axi_aclk;
-  wire [8:0]s_axi_araddr;
-  wire s_axi_aresetn;
-  wire s_axi_arready;
-  wire s_axi_arvalid;
-  wire [8:0]s_axi_awaddr;
-  wire s_axi_awready;
-  wire s_axi_awvalid;
-  wire s_axi_bready;
-  wire [1:0]s_axi_bresp;
-  wire s_axi_bvalid;
-  wire [31:0]s_axi_rdata;
-  wire s_axi_rready;
-  wire [1:0]s_axi_rresp;
-  wire s_axi_rvalid;
-  wire [31:0]s_axi_wdata;
-  wire s_axi_wready;
-  wire [3:0]s_axi_wstrb;
-  wire s_axi_wvalid;
-  wire [1:0]NLW_U0_processor_ack_out_UNCONNECTED;
-
-  (* C_ASYNC_INTR = "-8" *) 
-  (* C_CASCADE_MASTER = "0" *) 
-  (* C_DISABLE_SYNCHRONIZERS = "0" *) 
-  (* C_ENABLE_ASYNC = "0" *) 
-  (* C_EN_CASCADE_MODE = "0" *) 
-  (* C_FAMILY = "artix7" *) 
-  (* C_HAS_CIE = "1" *) 
-  (* C_HAS_FAST = "1" *) 
-  (* C_HAS_ILR = "0" *) 
-  (* C_HAS_IPR = "1" *) 
-  (* C_HAS_IVR = "1" *) 
-  (* C_HAS_SIE = "1" *) 
-  (* C_INSTANCE = "base_soc_microblaze_0_axi_intc_0" *) 
-  (* C_IRQ_ACTIVE = "1'b1" *) 
-  (* C_IRQ_IS_LEVEL = "1" *) 
-  (* C_IVAR_RESET_VALUE = "16" *) 
-  (* C_KIND_OF_EDGE = "-1" *) 
-  (* C_KIND_OF_INTR = "-8" *) 
-  (* C_KIND_OF_LVL = "-1" *) 
-  (* C_MB_CLK_NOT_CONNECTED = "1" *) 
-  (* C_NUM_INTR_INPUTS = "3" *) 
-  (* C_NUM_SW_INTR = "0" *) 
-  (* C_NUM_SYNC_FF = "2" *) 
-  (* C_S_AXI_ADDR_WIDTH = "9" *) 
-  (* C_S_AXI_DATA_WIDTH = "32" *) 
-  (* hdl = "VHDL" *) 
-  (* imp_netlist = "TRUE" *) 
-  (* ip_group = "LOGICORE" *) 
-  (* iptype = "PERIPHERAL" *) 
-  (* run_ngcbuild = "TRUE" *) 
-  (* style = "HDL" *) 
-  base_soc_microblaze_0_axi_intc_0_axi_intc U0
-       (.interrupt_address(interrupt_address),
-        .interrupt_address_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .intr(intr),
-        .irq(irq),
-        .irq_in(1'b0),
-        .processor_ack(processor_ack),
-        .processor_ack_out(NLW_U0_processor_ack_out_UNCONNECTED[1:0]),
-        .processor_clk(processor_clk),
-        .processor_rst(processor_rst),
-        .s_axi_aclk(s_axi_aclk),
-        .s_axi_araddr(s_axi_araddr),
-        .s_axi_aresetn(s_axi_aresetn),
-        .s_axi_arready(s_axi_arready),
-        .s_axi_arvalid(s_axi_arvalid),
-        .s_axi_awaddr(s_axi_awaddr),
-        .s_axi_awready(s_axi_awready),
-        .s_axi_awvalid(s_axi_awvalid),
-        .s_axi_bready(s_axi_bready),
-        .s_axi_bresp(s_axi_bresp),
-        .s_axi_bvalid(s_axi_bvalid),
-        .s_axi_rdata(s_axi_rdata),
-        .s_axi_rready(s_axi_rready),
-        .s_axi_rresp(s_axi_rresp),
-        .s_axi_rvalid(s_axi_rvalid),
-        .s_axi_wdata(s_axi_wdata),
-        .s_axi_wready(s_axi_wready),
-        .s_axi_wstrb(s_axi_wstrb),
-        .s_axi_wvalid(s_axi_wvalid));
-endmodule
-
-(* ORIG_REF_NAME = "address_decoder" *) 
 module base_soc_microblaze_0_axi_intc_0_address_decoder
    (ip2bus_wrack_reg,
     p_17_in,
@@ -1197,9 +1053,9 @@ endmodule
 (* C_IVAR_RESET_VALUE = "16" *) (* C_KIND_OF_EDGE = "-1" *) (* C_KIND_OF_INTR = "-8" *) 
 (* C_KIND_OF_LVL = "-1" *) (* C_MB_CLK_NOT_CONNECTED = "1" *) (* C_NUM_INTR_INPUTS = "3" *) 
 (* C_NUM_SW_INTR = "0" *) (* C_NUM_SYNC_FF = "2" *) (* C_S_AXI_ADDR_WIDTH = "9" *) 
-(* C_S_AXI_DATA_WIDTH = "32" *) (* ORIG_REF_NAME = "axi_intc" *) (* hdl = "VHDL" *) 
-(* imp_netlist = "TRUE" *) (* ip_group = "LOGICORE" *) (* iptype = "PERIPHERAL" *) 
-(* run_ngcbuild = "TRUE" *) (* style = "HDL" *) 
+(* C_S_AXI_DATA_WIDTH = "32" *) (* hdl = "VHDL" *) (* imp_netlist = "TRUE" *) 
+(* ip_group = "LOGICORE" *) (* iptype = "PERIPHERAL" *) (* run_ngcbuild = "TRUE" *) 
+(* style = "HDL" *) 
 module base_soc_microblaze_0_axi_intc_0_axi_intc
    (s_axi_aclk,
     s_axi_aresetn,
@@ -1486,7 +1342,6 @@ module base_soc_microblaze_0_axi_intc_0_axi_intc
         .R(p_0_in));
 endmodule
 
-(* ORIG_REF_NAME = "axi_lite_ipif" *) 
 module base_soc_microblaze_0_axi_intc_0_axi_lite_ipif
    (p_14_in,
     p_17_in,
@@ -1765,7 +1620,149 @@ module base_soc_microblaze_0_axi_intc_0_axi_lite_ipif
         .s_axi_wvalid(s_axi_wvalid));
 endmodule
 
-(* ORIG_REF_NAME = "intc_core" *) 
+(* CHECK_LICENSE_TYPE = "base_soc_microblaze_0_axi_intc_0,axi_intc,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_intc,Vivado 2016.4" *) 
+(* NotValidForBitStream *)
+module base_soc_microblaze_0_axi_intc_0
+   (s_axi_aclk,
+    s_axi_aresetn,
+    s_axi_awaddr,
+    s_axi_awvalid,
+    s_axi_awready,
+    s_axi_wdata,
+    s_axi_wstrb,
+    s_axi_wvalid,
+    s_axi_wready,
+    s_axi_bresp,
+    s_axi_bvalid,
+    s_axi_bready,
+    s_axi_araddr,
+    s_axi_arvalid,
+    s_axi_arready,
+    s_axi_rdata,
+    s_axi_rresp,
+    s_axi_rvalid,
+    s_axi_rready,
+    intr,
+    processor_clk,
+    processor_rst,
+    irq,
+    processor_ack,
+    interrupt_address);
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *) input s_axi_aclk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 s_resetn RST" *) input s_axi_aresetn;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWADDR" *) input [8:0]s_axi_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWVALID" *) input s_axi_awvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi AWREADY" *) output s_axi_awready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WDATA" *) input [31:0]s_axi_wdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WSTRB" *) input [3:0]s_axi_wstrb;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WVALID" *) input s_axi_wvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi WREADY" *) output s_axi_wready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BRESP" *) output [1:0]s_axi_bresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BVALID" *) output s_axi_bvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi BREADY" *) input s_axi_bready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARADDR" *) input [8:0]s_axi_araddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARVALID" *) input s_axi_arvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi ARREADY" *) output s_axi_arready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RDATA" *) output [31:0]s_axi_rdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RRESP" *) output [1:0]s_axi_rresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RVALID" *) output s_axi_rvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 s_axi RREADY" *) input s_axi_rready;
+  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 interrupt_input INTERRUPT" *) input [2:0]intr;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 proc_clock CLK" *) input processor_clk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 proc_reset RST" *) input processor_rst;
+  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt INTERRUPT" *) output irq;
+  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt ACK" *) input [1:0]processor_ack;
+  (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 interrupt ADDRESS" *) output [31:0]interrupt_address;
+
+  wire [31:0]interrupt_address;
+  wire [2:0]intr;
+  wire irq;
+  wire [1:0]processor_ack;
+  wire processor_clk;
+  wire processor_rst;
+  wire s_axi_aclk;
+  wire [8:0]s_axi_araddr;
+  wire s_axi_aresetn;
+  wire s_axi_arready;
+  wire s_axi_arvalid;
+  wire [8:0]s_axi_awaddr;
+  wire s_axi_awready;
+  wire s_axi_awvalid;
+  wire s_axi_bready;
+  wire [1:0]s_axi_bresp;
+  wire s_axi_bvalid;
+  wire [31:0]s_axi_rdata;
+  wire s_axi_rready;
+  wire [1:0]s_axi_rresp;
+  wire s_axi_rvalid;
+  wire [31:0]s_axi_wdata;
+  wire s_axi_wready;
+  wire [3:0]s_axi_wstrb;
+  wire s_axi_wvalid;
+  wire [1:0]NLW_U0_processor_ack_out_UNCONNECTED;
+
+  (* C_ASYNC_INTR = "-8" *) 
+  (* C_CASCADE_MASTER = "0" *) 
+  (* C_DISABLE_SYNCHRONIZERS = "0" *) 
+  (* C_ENABLE_ASYNC = "0" *) 
+  (* C_EN_CASCADE_MODE = "0" *) 
+  (* C_FAMILY = "artix7" *) 
+  (* C_HAS_CIE = "1" *) 
+  (* C_HAS_FAST = "1" *) 
+  (* C_HAS_ILR = "0" *) 
+  (* C_HAS_IPR = "1" *) 
+  (* C_HAS_IVR = "1" *) 
+  (* C_HAS_SIE = "1" *) 
+  (* C_INSTANCE = "base_soc_microblaze_0_axi_intc_0" *) 
+  (* C_IRQ_ACTIVE = "1'b1" *) 
+  (* C_IRQ_IS_LEVEL = "1" *) 
+  (* C_IVAR_RESET_VALUE = "16" *) 
+  (* C_KIND_OF_EDGE = "-1" *) 
+  (* C_KIND_OF_INTR = "-8" *) 
+  (* C_KIND_OF_LVL = "-1" *) 
+  (* C_MB_CLK_NOT_CONNECTED = "1" *) 
+  (* C_NUM_INTR_INPUTS = "3" *) 
+  (* C_NUM_SW_INTR = "0" *) 
+  (* C_NUM_SYNC_FF = "2" *) 
+  (* C_S_AXI_ADDR_WIDTH = "9" *) 
+  (* C_S_AXI_DATA_WIDTH = "32" *) 
+  (* hdl = "VHDL" *) 
+  (* imp_netlist = "TRUE" *) 
+  (* ip_group = "LOGICORE" *) 
+  (* iptype = "PERIPHERAL" *) 
+  (* run_ngcbuild = "TRUE" *) 
+  (* style = "HDL" *) 
+  base_soc_microblaze_0_axi_intc_0_axi_intc U0
+       (.interrupt_address(interrupt_address),
+        .interrupt_address_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .intr(intr),
+        .irq(irq),
+        .irq_in(1'b0),
+        .processor_ack(processor_ack),
+        .processor_ack_out(NLW_U0_processor_ack_out_UNCONNECTED[1:0]),
+        .processor_clk(processor_clk),
+        .processor_rst(processor_rst),
+        .s_axi_aclk(s_axi_aclk),
+        .s_axi_araddr(s_axi_araddr),
+        .s_axi_aresetn(s_axi_aresetn),
+        .s_axi_arready(s_axi_arready),
+        .s_axi_arvalid(s_axi_arvalid),
+        .s_axi_awaddr(s_axi_awaddr),
+        .s_axi_awready(s_axi_awready),
+        .s_axi_awvalid(s_axi_awvalid),
+        .s_axi_bready(s_axi_bready),
+        .s_axi_bresp(s_axi_bresp),
+        .s_axi_bvalid(s_axi_bvalid),
+        .s_axi_rdata(s_axi_rdata),
+        .s_axi_rready(s_axi_rready),
+        .s_axi_rresp(s_axi_rresp),
+        .s_axi_rvalid(s_axi_rvalid),
+        .s_axi_wdata(s_axi_wdata),
+        .s_axi_wready(s_axi_wready),
+        .s_axi_wstrb(s_axi_wstrb),
+        .s_axi_wvalid(s_axi_wvalid));
+endmodule
+
 module base_soc_microblaze_0_axi_intc_0_intc_core
    (irq_gen_reg_0,
     p_0_in8_in,
@@ -2558,7 +2555,6 @@ module base_soc_microblaze_0_axi_intc_0_intc_core
         .R(SS));
 endmodule
 
-(* ORIG_REF_NAME = "shared_ram_ivar" *) 
 module base_soc_microblaze_0_axi_intc_0_shared_ram_ivar
    (Douta,
     interrupt_address,
@@ -3610,7 +3606,6 @@ module base_soc_microblaze_0_axi_intc_0_shared_ram_ivar
         .WE(bus2ip_wrce));
 endmodule
 
-(* ORIG_REF_NAME = "slave_attachment" *) 
 module base_soc_microblaze_0_axi_intc_0_slave_attachment
    (ip2bus_wrack_reg,
     p_17_in,

@@ -36,7 +36,6 @@
 
 // Function prototypes
 static void prvSetupHardware(void);
-void prvPmodLS1_ISR(void *ISRParameter);
 void prvPmodLS1_InterruptHandler(void *CallbackRef);
 int isBlocked();
 
@@ -62,12 +61,15 @@ PmodMAXSONAR rightSonar;
 int is_blocked = FALSE;
 
 // GPIO
+XGpio gpio0;
 XGpio gpio1;
 #define LED_CHANNEL 1
 #define BTN_CHANNEL 2
 
 // PMOD LS1
 XGpio PMOD_LS1;
+#define L_SENSOR 0x1
+#define R_SENSOR 0x2
 
 // Car states
 typedef enum
@@ -93,29 +95,37 @@ int main(void)
   MAXSONAR_begin(&leftSonar, PMOD_SONAR0_BASEADDR, CLK_FREQ);
   MAXSONAR_begin(&rightSonar, PMOD_SONAR1_BASEADDR, CLK_FREQ);
 
+  // Initialize GPIO buttons and LEDs
+  XGpio_Initialize(&gpio0, XPAR_GPIO_0_DEVICE_ID);
+  XGpio_SetDataDirection(&gpio0, LED_CHANNEL, 0x0);
+  XGpio_SetDataDirection(&gpio0, BTN_CHANNEL, 0xF);
+
+  XGpio_Initialize(&gpio1, XPAR_GPIO_1_DEVICE_ID);
+  XGpio_SetDataDirection(&gpio1, LED_CHANNEL, 0x0);
+  XGpio_SetDataDirection(&gpio1, BTN_CHANNEL, 0xF);
+
   // Initialize GPIO PMOD LS1
   XGpio_Initialize(&PMOD_LS1, XPAR_AXI_GPIO_PMOD_LS1_DEVICE_ID);
   XGpio_SetDataDirection(&PMOD_LS1, /* PMOD top row */ 1, 0xF);
   XGpio_SetDataDirection(&PMOD_LS1, /* PMOD bottom row */ 2, 0xF);
-  XGpio_InterruptEnable(&PMOD_LS1, XGPIO_IR_CH1_MASK); // Enable interrupts per channel/row
-  XGpio_InterruptEnable(&PMOD_LS1, XGPIO_IR_CH2_MASK); // Enable interrupts per channel/row
-  XGpio_InterruptGlobalEnable(&PMOD_LS1);              // Global interrupts enable
-
-  // Initialize GPIO buttons and LEDs
-  XGpio_Initialize(&gpio1, XPAR_GPIO_1_DEVICE_ID);
-  XGpio_SetDataDirection(&gpio1, LED_CHANNEL, 0x0);
-  XGpio_SetDataDirection(&gpio1, BTN_CHANNEL, 0xF);
 
   // Connect to the Interrupt Controller
   // https://www.freertos.org/RTOS-Xilinx-Microblaze-KC705.html
   /* Install the tick interrupt handler as the timer ISR.
 		*NOTE* The xPortInstallInterruptHandler() API function must be used for
 		this purpose. */
-  xStatus = xPortInstallInterruptHandler(XPAR_INTC_0_GPIO_2_VEC_ID, prvPmodLS1_ISR, NULL);
+  portBASE_TYPE xStatus;
+  xStatus = xPortInstallInterruptHandler(XPAR_INTC_0_GPIO_2_VEC_ID, prvPmodLS1_InterruptHandler, NULL);
   /* Enable the timer interrupt in the interrupt controller.
 		*NOTE* The vPortEnableInterrupt() API function must be used for this
 		purpose. */
-  vPortEnableInterrupt(XPAR_INTC_0_GPIO_2_VEC_ID);
+  if (xStatus == pdPASS)
+  {
+    vPortEnableInterrupt(XPAR_INTC_0_GPIO_2_VEC_ID);
+    XGpio_InterruptEnable(&PMOD_LS1, XGPIO_IR_CH1_MASK); // Enable interrupts per channel/row
+    XGpio_InterruptEnable(&PMOD_LS1, XGPIO_IR_CH2_MASK); // Enable interrupts per channel/row
+    XGpio_InterruptGlobalEnable(&PMOD_LS1);              // Global interrupts enable
+  }
 
   // Initialize state mutex
   state_mutex = xSemaphoreCreateMutex();
@@ -176,33 +186,27 @@ int isBlocked()
   return is_blocked;
 }
 
-void prvPmodLS1_ISR(void *ISRparameter)
-{
-  prvPmodLS1_InterruptHandler();
-}
-
 // "Routine method" that executes when an interrupt occurred
-void prvPmodLS1_InterruptHandler(void *CallbackRef)
+void prvPmodLS1_InterruptHandler(void *ISRparameter)
 {
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
   // If-statement that executes when the value of the PMOD LS1 not zero
-  // Don't care which sensor picked up the signal here. However,
-  // this would be a good place to find out which side/sensor picked up the
-  // signal
+  // Tag the interrupt_occured variable if we are indeed on the line
   if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1))
   {
     // Print statement that tracks interrupts occurred
     xil_printf("Interrupt occurred.\n");
 
     // Turn off LEDS
-    XGpio_DiscreteWrite(&gpio1, 1, 00000);
-    vTaskSuspendAll(); // We can suspend all tasks while servicing interrupt
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 01111);
 
+    // Tag interrupt event
     interrupt_occured = TRUE;
 
-    xTaskResumeAll(); // Resume tasks
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 00000);
   }
+
   // Clears the value of the input button back to the masked value (0x1)
   XGpio_InterruptClear(&PMOD_LS1, /* bottom row */ 1);
 
@@ -219,17 +223,24 @@ void prvPmodLS1_InterruptHandler(void *CallbackRef)
 void prvSupervisorTask(void *pvParameters)
 {
   const char *pcTaskName = "Supervisor is running\r\n";
+  int sw_data = 0;
 
   while (1)
   {
     /* Print out the name of this task. */
     xil_printf("%s", pcTaskName);
 
-    int data = XGpio_DiscreteRead(&gpio1, 2);
-    xil_printf("SW Data: x%4x\r\n", data);
-
     if (xSemaphoreTake(state_mutex, 100))
     {
+      // Force IDLE state if switches are in off position
+      sw_data = XGpio_DiscreteRead(&gpio1, BTN_CHANNEL);
+      if (sw_data == 0)
+      {
+        // DEBUG:
+        xil_printf("SW Data: 0x%1x\r\n", sw_data);
+        state = IDLE;
+      }
+
       // Hack: Check if interrupt occured in last cycle, and return to IDLE state
       // Also handshake the interrupt
       // Can use this to enter some special state after an interrupt
@@ -238,7 +249,7 @@ void prvSupervisorTask(void *pvParameters)
       // and, https: //www.freertos.org/RTOS_Task_Notification_As_Counting_Semaphore.html
       if (interrupt_occured)
       {
-        state = IDLE;
+        state = NAVIGATE;
         interrupt_occured = FALSE;
       }
 
@@ -275,19 +286,16 @@ void prvSupervisorTask(void *pvParameters)
 static void prvIdleTask(void *pvParameters)
 {
   const char *pcTaskName = "idle task is running\r\n";
-
-  u32 sw_data = 0;
-
   while (1)
   {
     /* Print out the name of this task. */
     xil_printf("%s", pcTaskName);
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 04444);
 
     if (xSemaphoreTake(state_mutex, 10))
     {
       // Switch state on button press
-      sw_data = XGpio_DiscreteRead(&gpio1, BTN_CHANNEL);
-      if (sw_data != 0)
+      if (XGpio_DiscreteRead(&gpio0, BTN_CHANNEL))
       {
         state = DRIVE;
       }
@@ -296,8 +304,6 @@ static void prvIdleTask(void *pvParameters)
       xSemaphoreGive(state_mutex);
     }
 
-    // Sleep for a small amount of time
-    vTaskDelay(pdMS_TO_TICKS(/* ms to sleep */ 1000));
     vTaskSuspend(NULL); // Suspend ourselves.
   }
 }
@@ -310,22 +316,22 @@ static void prvDriveTask(void *pvParameters)
   {
     /* Print out the name of this task. */
     xil_printf("%s", pcTaskName);
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 02222);
 
     if (xSemaphoreTake(state_mutex, 10))
     {
-      if (isBlocked() || interrupt_occured)
+      if (isBlocked())
       {
-        state = NAVIGATE;
+        xil_printf("Blocked! Stopping...\r\n");
+        state = IDLE;
       }
       else
-        driveForwardContinuous(1); // xil_printf("driving forward!\r\n"); // driveForward(1);
+        driveForwardContinuous(1); // driveForward(1);
 
       // Release lock
       xSemaphoreGive(state_mutex);
     }
 
-    // Sleep for a small amount of time
-    vTaskDelay(pdMS_TO_TICKS(/* ms to sleep */ 1000));
     vTaskSuspend(NULL); // Suspend ourselves.
   }
 }
@@ -334,28 +340,24 @@ static void prvDriveTask(void *pvParameters)
 static void prvNavigateTask(void *pvParameters)
 {
   const char *pcTaskName = "Navigate task is running\r\n";
+  u32 ulNotifiedValue;
 
   while (1)
   {
     /* Print out the name of this task. */
     xil_printf("%s", pcTaskName);
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 06666);
 
-    if (xSemaphoreTake(state_mutex, 10))
+    // Steer off the line and exit task when neither sensor is on the line
+    if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1) & L_SENSOR)
+      turnLeft(5); // swingTurnLeft(5);
+    else if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1) & R_SENSOR)
+      turnRight(5); // swingTurnRight(5);
+    else
     {
-      if (isBlocked() && !interrupt_occured)
-        turnRight(90); //xil_printf("turning right\r\n"); // turnRight(90);
-      else
-      {
-        state = DRIVE;
-      }
-
-      // Release lock
-      xSemaphoreGive(state_mutex);
+      state = DRIVE;
+      vTaskSuspend(NULL); // Suspend ourselves.
     }
-
-    // Sleep for a small amount of time
-    vTaskDelay(pdMS_TO_TICKS(/* ms to sleep */ 1000));
-    vTaskSuspend(NULL); // Suspend ourselves.
   }
 }
 

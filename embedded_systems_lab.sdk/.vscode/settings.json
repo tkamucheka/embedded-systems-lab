@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "ostream": "cpp",
+    "functional": "cpp",
+    "memory": "cpp",
+    "sstream": "cpp",
+    "optional": "cpp",
+    "*.rmd": "markdown",
+    "Makevars": "makefile",
+    "random": "cpp",
+    "*.win": "makefile",
+    "xgpio.h": "c",
+    "xgpio_l.h": "c",
+    "xil_io.h": "c"
+  }
+}

@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="/opt/Xilinx/SDK/2016.4/bin/rdiArgs.sh: line 179: 312738 Segmentation fault "/>
 			<item value="VERBOSE"/>
 			<item value="printf"/>
 			<item value="xgpio1"/>

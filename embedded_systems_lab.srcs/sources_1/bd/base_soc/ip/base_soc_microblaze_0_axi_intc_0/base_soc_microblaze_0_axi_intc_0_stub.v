@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
 // Date        : Fri Nov  5 03:04:03 2021
 // Host        : primus running 64-bit Ubuntu 21.10
-// Command     : write_verilog -force -mode synth_stub
-//               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_microblaze_0_axi_intc_0/base_soc_microblaze_0_axi_intc_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top base_soc_microblaze_0_axi_intc_0 -prefix
+//               base_soc_microblaze_0_axi_intc_0_ base_soc_microblaze_0_axi_intc_0_stub.v
 // Design      : base_soc_microblaze_0_axi_intc_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35ticsg324-1L
