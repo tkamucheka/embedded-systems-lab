@@ -57,6 +57,8 @@
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
 // clk_out1___166.667______0.000______50.0______118.758_____98.575
+// clk_out2___200.000______0.000______50.0______114.829_____98.575
+// clk_out3____50.000______0.000______50.0______151.636_____98.575
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -70,9 +72,10 @@ module base_soc_clk_wiz_1_0_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk_out1,
+  output        clk_out2,
+  output        clk_out3,
   // Status and control signals
   input         resetn,
-  output        locked,
   input         clk_in1
  );
   // Input buffering
@@ -107,9 +110,7 @@ wire clk_in2_base_soc_clk_wiz_1_0;
   wire        clkfbout_buf_base_soc_clk_wiz_1_0;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
-   wire clkout1_unused;
    wire clkout1b_unused;
-   wire clkout2_unused;
    wire clkout2b_unused;
    wire clkout3_unused;
    wire clkout3b_unused;
@@ -133,6 +134,14 @@ wire clk_in2_base_soc_clk_wiz_1_0;
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
+    .CLKOUT1_DIVIDE       (5),
+    .CLKOUT1_PHASE        (0.000),
+    .CLKOUT1_DUTY_CYCLE   (0.500),
+    .CLKOUT1_USE_FINE_PS  ("FALSE"),
+    .CLKOUT2_DIVIDE       (20),
+    .CLKOUT2_PHASE        (0.000),
+    .CLKOUT2_DUTY_CYCLE   (0.500),
+    .CLKOUT2_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (10.0))
   mmcm_adv_inst
     // Output clocks
@@ -141,9 +150,9 @@ wire clk_in2_base_soc_clk_wiz_1_0;
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_out1_base_soc_clk_wiz_1_0),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clkout1_unused),
+    .CLKOUT1             (clk_out2_base_soc_clk_wiz_1_0),
     .CLKOUT1B            (clkout1b_unused),
-    .CLKOUT2             (clkout2_unused),
+    .CLKOUT2             (clk_out3_base_soc_clk_wiz_1_0),
     .CLKOUT2B            (clkout2b_unused),
     .CLKOUT3             (clkout3_unused),
     .CLKOUT3B            (clkout3b_unused),
@@ -177,7 +186,6 @@ wire clk_in2_base_soc_clk_wiz_1_0;
     .RST                 (reset_high));
   assign reset_high = ~resetn; 
 
-  assign locked = locked_int;
 // Clock Monitor clock assigning
 //--------------------------------------
  // Output buffering
@@ -193,6 +201,14 @@ wire clk_in2_base_soc_clk_wiz_1_0;
    (.O   (clk_out1),
     .I   (clk_out1_base_soc_clk_wiz_1_0));
 
+
+  BUFG clkout2_buf
+   (.O   (clk_out2),
+    .I   (clk_out2_base_soc_clk_wiz_1_0));
+
+  BUFG clkout3_buf
+   (.O   (clk_out3),
+    .I   (clk_out3_base_soc_clk_wiz_1_0));
 
 
 

@@ -1,18 +1,18 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-// Date        : Fri Nov  5 03:04:32 2021
-// Host        : primus running 64-bit Ubuntu 21.10
-// Command     : write_verilog -force -mode funcsim -rename_top base_soc_rst_mig_7series_0_83M_0 -prefix
-//               base_soc_rst_mig_7series_0_83M_0_ base_soc_rst_clk_wiz_1_100M_0_sim_netlist.v
-// Design      : base_soc_rst_clk_wiz_1_100M_0
+// Date        : Tue Dec  7 23:07:15 2021
+// Host        : Primus running 64-bit Ubuntu 21.10
+// Command     : write_verilog -force -mode funcsim
+//               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_rst_mig_7series_0_83M_0/base_soc_rst_mig_7series_0_83M_0_sim_netlist.v
+// Design      : base_soc_rst_mig_7series_0_83M_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7a35ticsg324-1L
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "base_soc_rst_clk_wiz_1_100M_0,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2016.4" *) 
+(* CHECK_LICENSE_TYPE = "base_soc_rst_mig_7series_0_83M_0,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2016.4" *) 
 (* NotValidForBitStream *)
 module base_soc_rst_mig_7series_0_83M_0
    (slowest_sync_clk,
@@ -47,7 +47,7 @@ module base_soc_rst_mig_7series_0_83M_0
   wire [0:0]peripheral_reset;
   wire slowest_sync_clk;
 
-  (* C_AUX_RESET_HIGH = "1'b0" *) 
+  (* C_AUX_RESET_HIGH = "1'b1" *) 
   (* C_AUX_RST_WIDTH = "4" *) 
   (* C_EXT_RESET_HIGH = "1'b0" *) 
   (* C_EXT_RST_WIDTH = "4" *) 
@@ -69,25 +69,25 @@ module base_soc_rst_mig_7series_0_83M_0
         .slowest_sync_clk(slowest_sync_clk));
 endmodule
 
+(* ORIG_REF_NAME = "cdc_sync" *) 
 module base_soc_rst_mig_7series_0_83M_0_cdc_sync
    (lpf_asr_reg,
     scndry_out,
-    aux_reset_in,
     lpf_asr,
     asr_lpf,
     p_1_in,
     p_2_in,
+    aux_reset_in,
     slowest_sync_clk);
   output lpf_asr_reg;
   output scndry_out;
-  input aux_reset_in;
   input lpf_asr;
   input [0:0]asr_lpf;
   input p_1_in;
   input p_2_in;
+  input aux_reset_in;
   input slowest_sync_clk;
 
-  wire asr_d1;
   wire [0:0]asr_lpf;
   wire aux_reset_in;
   wire lpf_asr;
@@ -108,14 +108,9 @@ module base_soc_rst_mig_7series_0_83M_0_cdc_sync
     \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to 
        (.C(slowest_sync_clk),
         .CE(1'b1),
-        .D(asr_d1),
+        .D(aux_reset_in),
         .Q(s_level_out_d1_cdc_to),
         .R(1'b0));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1 
-       (.I0(aux_reset_in),
-        .O(asr_d1));
   (* ASYNC_REG *) 
   (* BOX_TYPE = "PRIMITIVE" *) 
   (* XILINX_LEGACY_PRIM = "FDR" *) 
@@ -177,7 +172,7 @@ module base_soc_rst_mig_7series_0_83M_0_cdc_sync_0
   input ext_reset_in;
   input slowest_sync_clk;
 
-  wire \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0 ;
+  wire \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1_n_0 ;
   wire ext_reset_in;
   wire lpf_exr;
   wire lpf_exr_reg;
@@ -197,15 +192,15 @@ module base_soc_rst_mig_7series_0_83M_0_cdc_sync_0
     \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to 
        (.C(slowest_sync_clk),
         .CE(1'b1),
-        .D(\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0 ),
+        .D(\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1_n_0 ),
         .Q(s_level_out_d1_cdc_to),
         .R(1'b0));
   LUT2 #(
     .INIT(4'hB)) 
-    \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0 
+    \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1 
        (.I0(mb_debug_sys_rst),
         .I1(ext_reset_in),
-        .O(\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1__0_n_0 ));
+        .O(\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_i_1_n_0 ));
   (* ASYNC_REG *) 
   (* BOX_TYPE = "PRIMITIVE" *) 
   (* XILINX_LEGACY_PRIM = "FDR" *) 
@@ -250,21 +245,22 @@ module base_soc_rst_mig_7series_0_83M_0_cdc_sync_0
         .O(lpf_exr_reg));
 endmodule
 
+(* ORIG_REF_NAME = "lpf" *) 
 module base_soc_rst_mig_7series_0_83M_0_lpf
    (lpf_int,
     slowest_sync_clk,
     dcm_locked,
-    aux_reset_in,
     mb_debug_sys_rst,
-    ext_reset_in);
+    ext_reset_in,
+    aux_reset_in);
   output lpf_int;
   input slowest_sync_clk;
   input dcm_locked;
-  input aux_reset_in;
   input mb_debug_sys_rst;
   input ext_reset_in;
+  input aux_reset_in;
 
-  wire \ACTIVE_LOW_AUX.ACT_LO_AUX_n_0 ;
+  wire \ACTIVE_HIGH_AUX.ACT_HI_AUX_n_0 ;
   wire \ACTIVE_LOW_EXT.ACT_LO_EXT_n_0 ;
   wire Q;
   wire [0:0]asr_lpf;
@@ -282,11 +278,11 @@ module base_soc_rst_mig_7series_0_83M_0_lpf
   wire [3:0]p_3_out;
   wire slowest_sync_clk;
 
-  base_soc_rst_mig_7series_0_83M_0_cdc_sync \ACTIVE_LOW_AUX.ACT_LO_AUX 
+  base_soc_rst_mig_7series_0_83M_0_cdc_sync \ACTIVE_HIGH_AUX.ACT_HI_AUX 
        (.asr_lpf(asr_lpf),
         .aux_reset_in(aux_reset_in),
         .lpf_asr(lpf_asr),
-        .lpf_asr_reg(\ACTIVE_LOW_AUX.ACT_LO_AUX_n_0 ),
+        .lpf_asr_reg(\ACTIVE_HIGH_AUX.ACT_HI_AUX_n_0 ),
         .p_1_in(p_1_in),
         .p_2_in(p_2_in),
         .scndry_out(p_3_in1_in),
@@ -366,7 +362,7 @@ module base_soc_rst_mig_7series_0_83M_0_lpf
     lpf_asr_reg
        (.C(slowest_sync_clk),
         .CE(1'b1),
-        .D(\ACTIVE_LOW_AUX.ACT_LO_AUX_n_0 ),
+        .D(\ACTIVE_HIGH_AUX.ACT_HI_AUX_n_0 ),
         .Q(lpf_asr),
         .R(1'b0));
   FDRE #(
@@ -395,9 +391,10 @@ module base_soc_rst_mig_7series_0_83M_0_lpf
         .R(1'b0));
 endmodule
 
-(* C_AUX_RESET_HIGH = "1'b0" *) (* C_AUX_RST_WIDTH = "4" *) (* C_EXT_RESET_HIGH = "1'b0" *) 
+(* C_AUX_RESET_HIGH = "1'b1" *) (* C_AUX_RST_WIDTH = "4" *) (* C_EXT_RESET_HIGH = "1'b0" *) 
 (* C_EXT_RST_WIDTH = "4" *) (* C_FAMILY = "artix7" *) (* C_NUM_BUS_RST = "1" *) 
 (* C_NUM_INTERCONNECT_ARESETN = "1" *) (* C_NUM_PERP_ARESETN = "1" *) (* C_NUM_PERP_RST = "1" *) 
+(* ORIG_REF_NAME = "proc_sys_reset" *) 
 module base_soc_rst_mig_7series_0_83M_0_proc_sys_reset
    (slowest_sync_clk,
     ext_reset_in,
@@ -498,6 +495,7 @@ module base_soc_rst_mig_7series_0_83M_0_proc_sys_reset
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "sequence_psr" *) 
 module base_soc_rst_mig_7series_0_83M_0_sequence_psr
    (Core,
     bsr,
@@ -738,6 +736,7 @@ module base_soc_rst_mig_7series_0_83M_0_sequence_psr
         .R(lpf_int));
 endmodule
 
+(* ORIG_REF_NAME = "upcnt_n" *) 
 module base_soc_rst_mig_7series_0_83M_0_upcnt_n
    (Q,
     seq_clr,

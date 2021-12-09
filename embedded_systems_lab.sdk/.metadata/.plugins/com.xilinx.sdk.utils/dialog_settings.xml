@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="/mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.sdk/base_soc_wrapper_hw_platform_0" key="zynq_flash_files_selection"/>
-	<item value="/mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.sdk/base_soc_wrapper_hw_platform_0" key="last_stored_selection"/>
+	<item value="/home/tendayi" key="program_fpga_view_bit_bmm_browse_key"/>
+	<item value="/mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.sdk/ArtyBot_example0/Debug" key="zynq_flash_files_selection"/>
+	<item value="/mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.sdk/ArtyBot_example0/Debug" key="last_stored_selection"/>
 </section>

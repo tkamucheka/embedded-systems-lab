@@ -1,8 +1,8 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
--- Date        : Fri Nov  5 03:04:07 2021
--- Host        : primus running 64-bit Ubuntu 21.10
+-- Date        : Tue Dec  7 23:07:30 2021
+-- Host        : Primus running 64-bit Ubuntu 21.10
 -- Command     : write_vhdl -force -mode synth_stub
 --               /mnt/Rogue/projects/Vivado/embedded_systems_lab/embedded_systems_lab.srcs/sources_1/bd/base_soc/ip/base_soc_axi_quad_spi_0_0/base_soc_axi_quad_spi_0_0_stub.vhdl
 -- Design      : base_soc_axi_quad_spi_0_0

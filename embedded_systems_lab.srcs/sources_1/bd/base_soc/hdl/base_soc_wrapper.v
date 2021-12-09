@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1756540 Mon Jan 23 19:11:19 MST 2017
-//Date        : Thu Dec  2 03:17:03 2021
+//Date        : Wed Dec  8 19:13:57 2021
 //Host        : Primus running 64-bit Ubuntu 21.10
 //Command     : generate_target base_soc_wrapper.bd
 //Design      : base_soc_wrapper

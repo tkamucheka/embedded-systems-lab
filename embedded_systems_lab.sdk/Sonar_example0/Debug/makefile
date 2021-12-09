@@ -47,7 +47,7 @@ all: Sonar_example0.elf secondary-outputs
 Sonar_example0.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MicroBlaze g++ linker'
-	mb-g++ -Wl,-T -Wl,../src/lscript.ld -L../../ArtyBot_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -o "Sonar_example0.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	mb-g++ -Wl,-T -Wl,../src/lscript.ld -L../../ArtyBot_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -o "Sonar_example0.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

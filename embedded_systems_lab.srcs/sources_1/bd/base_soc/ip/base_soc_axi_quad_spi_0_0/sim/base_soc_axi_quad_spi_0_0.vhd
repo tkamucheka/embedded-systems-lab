@@ -283,7 +283,7 @@ ARCHITECTURE base_soc_axi_quad_spi_0_0_arch OF base_soc_axi_quad_spi_0_0 IS
 BEGIN
   U0 : axi_quad_spi
     GENERIC MAP (
-      Async_Clk => 0,
+      Async_Clk => 1,
       C_FAMILY => "artix7",
       C_SELECT_XPM => 0,
       C_SUB_FAMILY => "artix7",
