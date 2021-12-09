@@ -11,7 +11,7 @@ src/bootloader.o src/bootloader.o: ../src/bootloader.c ../src/blconfig.h \
  ../../Bootloader_bsp/microblaze_0/include/xil_printf.h \
  ../../Bootloader_bsp/microblaze_0/include/mb_interface.h \
  ../../Bootloader_bsp/microblaze_0/include/xil_exception.h \
- ../../Bootloader_bsp/microblaze_0/include/xilisf_atmel.h
+ ../../Bootloader_bsp/microblaze_0/include/xilisf_intelstm.h
 
 ../src/blconfig.h:
 
@@ -43,4 +43,4 @@ src/bootloader.o src/bootloader.o: ../src/bootloader.c ../src/blconfig.h \
 
 ../../Bootloader_bsp/microblaze_0/include/xil_exception.h:
 
-../../Bootloader_bsp/microblaze_0/include/xilisf_atmel.h:
+../../Bootloader_bsp/microblaze_0/include/xilisf_intelstm.h:

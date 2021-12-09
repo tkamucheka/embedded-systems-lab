@@ -31,5 +31,5 @@
 ******************************************************************************/
 #warning "Please provide the correct address value for the definition FLASH_IMAGE_BASEADDR. Please give the flash offset @ which SREC application is programmed"
 
-#define FLASH_IMAGE_BASEADDR  0xF8000000
+#define FLASH_IMAGE_BASEADDR  0x00C00000
 

@@ -191,20 +191,22 @@ void prvPmodLS1_InterruptHandler(void *ISRparameter)
 {
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-  // If-statement that executes when the value of the PMOD LS1 not zero
-  // Tag the interrupt_occured variable if we are indeed on the line
-  if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1))
+  // Print statement that tracks interrupts occurred
+  xil_printf("Interrupt occurred.\n");
+  interrupt_occured = TRUE;
+
+  // While-statement that executes when the value of the PMOD LS1 not zero
+  // Steer off the line here
+  while (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1))
   {
-    // Print statement that tracks interrupts occurred
-    xil_printf("Interrupt occurred.\n");
+    // Turn LEDS white
+    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 07777);
 
-    // Turn off LEDS
-    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 01111);
-
-    // Tag interrupt event
-    interrupt_occured = TRUE;
-
-    XGpio_DiscreteWrite(&gpio1, LED_CHANNEL, 00000);
+    // Steer off the line and exit task when neither sensor is on the line
+    if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1) & L_SENSOR)
+      turnLeft(5); // swingTurnLeft(5);
+    else if (XGpio_DiscreteRead(&PMOD_LS1, /* top row */ 1) & R_SENSOR)
+      turnRight(5); // swingTurnRight(5);
   }
 
   // Clears the value of the input button back to the masked value (0x1)
@@ -249,7 +251,7 @@ void prvSupervisorTask(void *pvParameters)
       // and, https: //www.freertos.org/RTOS_Task_Notification_As_Counting_Semaphore.html
       if (interrupt_occured)
       {
-        state = NAVIGATE;
+        // state = NAVIGATE;
         interrupt_occured = FALSE;
       }
 
