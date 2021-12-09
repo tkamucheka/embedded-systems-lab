@@ -106,11 +106,8 @@ int main(void)
   XGpio_SetDataDirection(&gpio1, LED_CHANNEL, 0x0);
   XGpio_SetDataDirection(&gpio1, BTN_CHANNEL, 0xF);
 
-  // Initialize Interrupt controller
-  XIntc_Initialize(&InterruptController, INTC_DEVICE_ID);
-  XIntc_SelfTest(&InterruptController);
-
   // Connect to the Interrupt Controller
+  // https://www.freertos.org/RTOS-Xilinx-Microblaze-KC705.html
   /* Install the tick interrupt handler as the timer ISR.
 		*NOTE* The xPortInstallInterruptHandler() API function must be used for
 		this purpose. */
@@ -120,10 +117,7 @@ int main(void)
 		purpose. */
   vPortEnableInterrupt(XPAR_INTC_0_GPIO_2_VEC_ID);
 
-  Xil_ExceptionInit();
-  Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XIntc_InterruptHandler, &InterruptController);
-  Xil_ExceptionEnable();
-
+  // Initialize state mutex
   state_mutex = xSemaphoreCreateMutex();
 
   // Create freertos tasks
