@@ -53,7 +53,7 @@ static TaskHandle_t xDriveTask;
 static TaskHandle_t xNavigateTask;
 
 // Instance of the interrupt controller
-static XIntc InterruptController;
+// static XIntc InterruptController;
 int interrupt_occured = FALSE;
 
 // Sonar instances
